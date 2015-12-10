@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-md-12
+		article
+			p: a(href='/blog') &larr; 学习足迹
+			hr
+			if !data.games
+				h2 无效帖子.
+			else
+				header
+					h3= data.games.title
+				
+					
+						
+			
+				

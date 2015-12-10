@@ -1,0 +1,66 @@
+//人才招聘单独页面
+extends ../layouts/default
+
+block content
+	.container: .row: .col-md-12
+		article
+			br
+			p: a(href='/candidate') &larr; 返回
+			if !data.cand
+				h2 查无此人.
+			else
+				header
+					- var name = data.cand.name.first;
+					- var age = data.cand.age;
+					- var edu = data.cand.eduction;
+					- var exper = data.cand.experience;
+					- var mobile = data.cand.mobile;
+					- var hometown = data.cand.hometown;
+					- var school = data.cand.school;
+					
+					h3 姓名：  #{name} 
+					h4 年龄：  #{age}
+					h5 
+						p.text-muted 
+							if data.cand.publishedDate
+								| #{data.cand._.publishedDate.format( 'YYYY年M月D日')} 初次面试；   应聘  
+							if data.cand.title
+								a(href='/candidate/' + data.cand.title.key)= data.cand.title.name
+							
+				.post
+					if data.cand.image.exists
+						.image-wrap: a(href=data.cand._.image.fit(1600,1680) data-lightbox="example"): img(src=data.cand._.image.fit(550,350)).img-responsive
+					br
+					h5 
+						p.text-muted
+							if data.cand.skills && data.cand.skills.length
+								| 专业技能：
+								each cat, i in data.cand.skills
+									a(href='/bloglist/' + cat.key)= cat.name
+									if i < data.cand.skills.length - 1
+										| , 
+									else
+										|  
+					h5
+						p.text-muted 
+							| 工作经验： #{exper} 年
+						p.text-muted
+							| 毕业院校： #{school}
+						p.text-muted
+							| 学       历： #{edu}
+						p.text-muted
+							| 薪资要求： #{data.cand._.rsalary.format('0,0.00')} 元/月
+						p.text-muted 
+							| 家庭住址：  #{data.cand.address}
+						p.text-muted 
+							| 家       乡：  #{hometown}
+						p.text-muted
+							| 联系方式：  #{mobile}
+						p.text-muted
+							| 推荐客户：  #{data.cand.precustomer.CustomerName}
+						p.text-muted
+							| 预计入职日期： #{data.cand._.period.format('YYYY年M月D日')}
+					h4 人事部评估：
+					hr
+					!= data.cand.evaluate
+					hr

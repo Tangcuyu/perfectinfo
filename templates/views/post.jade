@@ -1,0 +1,35 @@
+//时间轴单独页面
+extends ../layouts/default
+block css
+	link(href="/styles/tree.css", rel="stylesheet", media="screen")
+block content
+	.container: .row: .col-md-12
+		article
+			br
+			if !data.post
+				h2 无效帖子.
+			else
+				header
+					h3= data.post.title
+					h5 
+						if data.post.author
+							| 由 #{data.post.author.name.first} 
+						if data.post.publishedDate
+							| 与 #{data.post._.publishedDate.format('YYYY年M月D日')} 发布
+						if data.post.categories && data.post.categories.length
+							| 在 
+							each cat, cat_i in data.post.categories
+								a(href='/bloglist/' + cat.key)= cat.name
+								if cat_i < data.post.categories.length - 1
+									| , 
+								else
+									|  
+						
+				.post
+					if data.post.image.exists
+						.image-wrap: a(href=data.post._.image.fit(1600,1680) data-lightbox="example"): img(src=data.post._.image.fit(550,350)).img-responsive
+					br
+					hr
+					!= data.post.content.brief 
+					hr
+					!= data.post.content.extended

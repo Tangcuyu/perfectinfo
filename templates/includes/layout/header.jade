@@ -1,0 +1,24 @@
+//- HEADER
+header(id='header')
+	.container
+			nav(role="navigation").navbar.blend-nav
+						.navbar-header
+							button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+								span.sr-only Toggle navigation
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a(href='/').navbar-brand
+						.collapse.navbar-collapse
+							ul.nav.navbar-nav.navbar-left.head-title
+								each link in navLinks
+									li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+							ul.nav.navbar-nav.navbar-right.head-title
+								if user
+									if user.canAccessKeystone
+										li: a(href='/keystone') 系统管理
+										li: a(href='/keystone/signout') 退 出
+								else
+									li: a(href='/signin', data-from=page.path, data-initial='signin').js-auth-trigger 登 录
+
+//-.header-placeholder

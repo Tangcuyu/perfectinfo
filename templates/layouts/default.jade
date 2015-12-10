@@ -1,0 +1,108 @@
+include ../mixins/flash-messages
+include ../mixins/auth/auth-forms
+
+doctype html
+html
+
+	//- HTML HEADER
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+		title= title || 'PerfectInfo'
+		link(rel="shortcut icon", href="/itsi_64.ico", type="image/x-icon")
+
+		//- Customise the stylesheet for your site by editing /public/styles/site.less
+		//- All .less files will be automatically compiled and minified in production.
+		link(href="/styles/site.min.css", rel="stylesheet")
+		//link(href="/styles/zoom.css", rel="stylesheet", media="all")
+		link(href="/styles/lightbox.css", rel="stylesheet", media="screen")
+		link(href="/styles/weather.css", rel="stylesheet", media="screen")
+		link(href="/styles/c3.css", rel="stylesheet", media="screen")
+		
+
+		//- This file provides the default styling for the KeystoneJS Content Editor
+		if user && user.canAccessKeystone
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+
+		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8
+		//-[if lt IE 9]
+			script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
+			script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
+		//-[endif]
+
+		script(src='/js/lib/d3/d3.min.js')
+		//- Include template-specific stylesheets by extending the css block
+		block css
+				
+		//- Add any other template-specific HEAD tags by extending the head block
+		block head
+
+	//- HTML BODY
+	body(class=section ? 'sitesection-' + section : null)
+		.site-wrapper.has-sticky-footer
+		
+			//- APP ALERT
+			//- if section == 'home'
+			//- 	include ../includes/layout/app-alert
+
+			//- SITE HEADER
+			include ../includes/layout/header
+			
+			//- SITE BODY
+			block body
+				main.site-body(role='main')
+
+					block intro
+
+					block flash-messages
+						+flash-messages(messages)
+
+					block content
+						
+			//- SITE FOOTER
+			block footer
+			//	include ../includes/layout/footer
+
+
+		//- MODALS
+		block modal
+		if !user
+			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signin", aria-hidden="true").modal.fade
+				.modal-dialog
+					.modal-content
+						+auth-forms({ modal: true, initial: 'signin' })
+		//- JAVASCRIPT
+
+		//- jQuery 1.11.1 is included by default, and required by both Bootstrap
+		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
+		//- you can upgrade to 2.1.1 (also bundled) for better performance.
+		script(src='/js/lib/jquery/jquery-2.1.1.min.js')
+
+		//- Customise which Bootstrap javascript files are served by including
+		//- them specifically here, instead of bootstrap-3.2.0.min.js
+		script(src='/js/lib/bootstrap/bootstrap-3.2.0.min.js')
+		script(src='/js/lib/bootstrap/collapse.js')
+		script(src='/js/lib/bootstrap/dropdown.js')
+		script(src='/js/lib/bootstrap/modal.js')
+		
+
+		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
+		//- which generate links to edit content for users who can access Keystone
+		if user && user.canAccessKeystone
+			script(src='/keystone/js/content/editor.js')
+
+		//- Add scripts that are globally required by your site here.
+		//- Add D3.js for graphic data
+		
+		script(src='/js/lib/c3/c3.min.js')
+		//script(src='/js/lib/d3/cubism.v1.min.js')
+		script(src="/js/lib/highcharts/highcharts.js")
+		//script(src="/js/lib/zoom/zoom.min.js")
+		script(src="/js/lib/lightbox/lightbox-2.6.min.js")
+
+		script(src='/js/ui.js')
+		//- Include template-specific javascript files by extending the js block
+		block js

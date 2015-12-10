@@ -1,0 +1,28 @@
+extends ../layouts/default
+include ../mixins/post
+
+block intro
+	.container-sm
+		.page-intro
+			h2.page-title 最新课程
+				
+		if data.posts
+			+post(post)
+block content
+	.page-content: .container
+		.timeline
+			.timeline-path
+			.timeline-item--offset
+			each post, i in data.posts.results
+				.timeline-item(class=i % 2 == 1 ? 'timeline-item--even' : 'timeline-item--odd')
+					.timeline-item-node
+					a(href=href='/bloglist/post/' + post.slug).timeline-item-inner
+						h5.text-caps.text-danger= post._.publishedDate.format('YYYY年M月D日')
+						h4= post.title
+						.image-wrap: img(src=post._.image.fit(100,80)).img-responsive
+						br
+						!=utils.cropString( utils.htmlToText(post.content.brief), 120, '...', true )
+						//- !=utils.htmlToText(post.content.extended)
+		
+		if !data.posts.results.length
+			h3.text-muted 还没有课程. 

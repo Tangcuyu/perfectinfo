@@ -1,0 +1,72 @@
+/**
+ * Stylesheet that implements elegant font
+ * www.elegant.com
+ *
+ * Author Joss Mackison
+ * www.thinkmill.com.au
+**/
+@font-face {
+	font-family: 'ElegantIcons';
+	src:url('../fonts/ElegantIcons.eot');
+	src:url('../fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/ElegantIcons.woff') format('woff'),
+		url('../fonts/ElegantIcons.ttf') format('truetype'),
+		url('../fonts/ElegantIcons.svg#ElegantIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+ 
+ 
+
+// Regular catchall
+.elegant {
+	
+	// positioning
+	display: inline-block;
+	vertical-align: -0.125em;
+	
+	// resets inherited font styles
+	font-family: 'ElegantIcons';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-decoration: inherit;
+	text-transform: none;
+	
+	// silence screen readers
+	speak: none;
+	
+	// smooth iOS font
+	-webkit-font-smoothing: antialiased;
+	
+	/* elegant is abnormally small */
+	font-size: 1.5em;
+	
+	/* offset font-size */
+	line-height: .5em;
+
+	// test
+	:hover & {
+		text-decoration: none;
+	}
+}
+
+.elegant-large {
+	font-size: 3em;
+}
+
+// Fixed width icons
+.elegant-fixed-width {
+	text-align: center;
+	width: .7em;
+}
+
+// elegant in buttons
+.elegant-btn-align {
+	margin-left: -0.075em;
+	margin-right: 0.075em;
+}
+
+// ICONS - Regular
+// ------------------------------
+.elegant.elegant-chat 			{ &:before { content: "\e066"; } }

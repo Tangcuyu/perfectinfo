@@ -1,0 +1,71 @@
+extends ../layouts/default
+
+mixin candidate(cand)
+	.post(data-ks-editable=editable(user, { list: 'Candidate', id: cand.id }))
+		h4: a(href='/candidate/cand/' + cand.candid)= cand.name.first
+		p.text-muted 
+			if cand.publishedDate
+				| #{cand._.publishedDate.format( 'YYYY年M月D日')} 初次面试；   应聘  
+			if cand.title
+				a(href='/candidate/' + cand.title.key)= cand.title.name
+		p
+			if cand.eduction
+			| 学       历：
+			!= cand.eduction
+		p
+			if cand.skills && cand.skills.length
+				| 专业技能：
+				each cat, i in cand.skills
+					!= cat.name
+					if i < cand.skills.length - 1
+						| , 
+					else
+						| 
+		p.text-muted
+			h5: | 人事评估：
+			if cand.evaluate
+				!= cand.evaluate
+		p.text-muted
+			if cand.skills
+				p.read-more: a(href='/candidate/cand/' + cand.candid) 详细信息...
+block intro
+	br
+block content
+	.container: .row
+		if data.titles.length
+			.col-sm-4.col-md-3
+				h3 职位目录
+				.list-group(style='margin-top: 20px;')
+					a(href='/candidate', class=!data.title ? 'active' : false).list-group-item 全部职位
+					each cat in data.titles  
+						a(href='/candidate/' + cat.key, class=data.title && data.title.id == cat.id ? 'active' : false).list-group-item= cat.name
+		.col-sm-8.col-md-9
+			h3= data.title ? data.title.name : '全部候选人'
+			br
+			if filters.title && !data.title
+				h3.text-muted 无效职位.
+			else
+				if data.candidates.results.length
+					.blog
+						each cand in data.candidates.results
+							+candidate(cand)
+					if data.candidates.totalPages > 1
+						ul.pagination
+							if data.candidates.previous
+								li: a(href='?page=' + data.candidates.previous): span.glyphicon.glyphicon-chevron-left
+							else
+								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+							each p, i in data.candidates.pages
+								li(class=data.candidates.currentPage == p ? 'active' : null)
+									a(href='?page=' + (p == '...' ? (i ? data.candidates.totalPages : 1) : p ))= p
+							if data.candidates.next
+								li: a(href='?page=' + data.candidates.next): span.glyphicon.glyphicon-chevron-right
+							else
+								li.disabled: a(href='?page=' + data.candidates.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+				else
+					if data.title
+						h3.text-muted  #{data.title.name}职位中还没有候选人.
+					else
+						h3.text-muted 还没有候选人.
+		
+		

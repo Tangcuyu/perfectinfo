@@ -1,0 +1,11 @@
+require('./User');
+require('./Post');
+require('./PostCategory');
+require('./Gallery');
+require('./Enquiry');
+require('./worksheet');
+require('./Candidate');
+require('./SkillCategory');
+require('./TitleCategory');
+require('./Customer');
+require('./game');

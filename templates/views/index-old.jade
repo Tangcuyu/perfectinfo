@@ -1,0 +1,62 @@
+extends ../layouts/default
+block css
+	style.
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: black;
+			shape-rendering: crispEdges;
+			}
+		.axis text {
+			font-family: sans-serif;
+			font-size: 11px;
+			}
+
+block content
+	.container: .jumbotron
+		.row
+			.col-md-12
+				a(href='/sheet').wdtitle: h2 工单管理
+		br
+		.row
+			.col-md-6
+				#wdchart
+				//a(href='/sheet').wdimage: img(src='/images/wd.png', width=360, height=260)
+			.col-md-6
+				#wdchart2
+				//a(href='/sheet').wdimage: img(src='/images/wd.png', width=360, height=260)
+		hr
+		.row
+			.col-md-4
+				p#map
+			.col-md-8
+				a(href='/blog').peixuntitle: h2 培训课程
+				p 功能：每周课程会议的知识总结
+				p 图形化开发：Javascript; HTML5+CSS3；D3+HighCharts;
+				p 系统管理: 桌面支持；网络管理；Exchange部署；数据库管理；
+				p 展现：时间轴显示学习足迹
+				p 更新：每周更新
+		hr
+		.row
+			.col-md-4 
+				h2 实时监控
+				p 功能:实时监控网络数据传输
+				p 实现：Cube数据库,D3+Cubism.js
+				p 说明：X轴为时间轴；Y轴为系统数据；按照每秒生成的数据实时更新
+			.col-md-4
+				p#example1
+		if user && user.canAccessKeystone
+			p
+				a(href='/keystone/signin').btn.btn-lg.btn-primary 进入管理界面
+		else
+			p
+				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary 管理
+				|  按此按钮进入管理界面.
+block js
+	//script(src='/js/lib/d3/9.js')
+	//script(src='/js/lib/d3/10.js')
+	script(src='/js/lib/d3/6.js')
+	script(src='/js/lib/d3/28.js')
+	script(src='/js/lib/d3/rtexample.js')
+	script(src='/js/lib/highcharts/charts/H1.js')
+	

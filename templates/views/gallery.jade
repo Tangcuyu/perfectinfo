@@ -1,0 +1,26 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h2 照片库
+	
+block content
+	.container
+		if galleries.length
+			each gallery in galleries
+				h2= gallery.name
+					if gallery.publishedDate
+						.pull-right.text-muted= gallery._.publishedDate.format('YYYY年M月D日')
+				
+				.row.gallery-images
+					if gallery.heroImage.exists
+						.col-sm-4.col-md-4.gallery-image: a(href=gallery._.heroImage.limit(680,680) data-lightbox="example-1"): img(src=gallery._.heroImage.limit(680,680)).img-rounded
+						.col-sm-8.col-md-8: .row
+							each image in gallery.images
+								.col-xs-4.col-sm-4.col-md-3.gallery-image: a(href=image.url data-lightbox="example-1"): img(src=image.limit(300,300)).img-rounded
+					else
+						ul.gallery
+						each image in gallery.images
+							.col-xs-6.col-sm-4.col-md-3.gallery-image: a(href=image.url data-lightbox="example-1"): img(src=image.limit(300,300)).img-rounded
+		else
+			h3.text-muted 照片库里还没照片呢.

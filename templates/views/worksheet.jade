@@ -1,0 +1,41 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/sheet') &larr; 返回
+			hr
+			if !data.worksheet
+				h2 无效工单.
+			else
+				header
+					h2= data.worksheet.title
+					hr
+					h5 
+						if data.worksheet.author
+							| 由 #{data.worksheet.author.name.first} 
+						if data.worksheet.Date
+							| 与 #{data.worksheet._.Date.format('YYYY年M月D日')} 支持
+						if data.worksheet.username
+							| 
+							a(href='/sheet/' + data.worksheet.username.key)= data.worksheet.username.CustomerName
+							
+						
+				.worksheet
+					p.lead.text-muted
+						| 工时：
+						!= data.worksheet.manhours 
+						| 小时
+					p.lead.text-muted
+						| 客户评价：
+						!= data.worksheet.evaluate
+					if data.worksheet.image.exists
+						p.lead.text-muted
+						| 图片附件
+						.image-wrap: img(src=data.worksheet._.image.fit(750,450)).img-responsive
+					p.lead.text-muted
+						| 故障现象：
+					!= data.worksheet.content.detail
+					p.lead.text-muted
+						| 处理结果：
+					!= data.worksheet.content.result

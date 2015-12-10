@@ -1,0 +1,62 @@
+extends ../layouts/default
+
+mixin worksheet(ws)
+	.worksheet(data-ks-editable=editable(user, { list: 'worksheet', id: ws.wid }))
+		h4: a(href='/sheet/worksheet/' + ws.wid)= ws.title
+		p.text-muted 
+			if ws.Date
+				| #{ws._.Date.format( 'YYYY年M月D日')} 
+			if ws.author
+				| #{ws.author.name.first} 
+			if ws.username
+				| 支持 
+				a(href='/sheet/' + ws.username.key)= ws.username.CustomerName
+					
+		if ws.image.exists
+			img(src=ws._.image.fit(160,160)).img.pull-right
+		p!= ws.content.detail
+		if ws.content.result
+			p.read-more: a(href='/sheet/worksheet/' + ws.wid) 详细信息...
+
+
+block intro
+	br
+	.container
+		h2= data.customer ? data.customer.CustomerName : '全部工单'
+block content
+	.container: .row
+		.col-sm-8.col-md-9
+			if filters.customer && !data.customers
+				h3.text-muted 无效分类.
+			else
+				if data.worksheets.results.length
+					.blog
+						each ws in data.worksheets.results 
+							+worksheet(ws)
+					if data.worksheets.totalPages > 1
+						ul.pagination
+							if data.worksheets.previous
+								li: a(href='?page=' + data.worksheets.previous): span.glyphicon.glyphicon-chevron-left
+							else
+								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+							each p, i in data.worksheets.pages
+								li(class=data.worksheets.currentPage == p ? 'active' : null) 
+									a(href='?page=' + (p == '...' ? (i ? data.worksheets.totalPages : 1) : p ))= p
+							if data.worksheets.next
+								li: a(href='?page=' + data.worksheets.next): span.glyphicon.glyphicon-chevron-right
+							else
+								li.disabled: a(href='?page=' + data.worksheets.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+				else
+					if data.customer
+						h3.text-muted  #{data.customer.CustomerName}目前还没有工单.
+					else
+						h3.text-muted 还没有工单.		
+		if data.customers.length
+			.col-sm-4.col-md-3
+				h3 客户名称
+				.list-group(style='margin-top: 20px;')
+					a(href='/sheet', class=!data.customer ? 'active' : false).list-group-item 全部客户
+					each cus in data.customers
+						a(href='/sheet/' + cus.key, class=data.customer && data.customer.key == cus.key ? 'active' : false).list-group-item= cus.CustomerName
+
+	
