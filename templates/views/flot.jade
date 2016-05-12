@@ -1,0 +1,55 @@
+extends ../layouts/navWu
+block navCon
+	.row
+		.col-lg-12
+			h1.page-header Flot 图表
+	.row
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading 噪音，温度展示
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="noise",style={padding:0,position:"relative"})
+	.row
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading 线形图表例子
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="flot-line-chart",style={padding:0,position:"relative"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 饼状图表例子
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="flot-pie-chart",style={padding:0,position:"relative"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 多线图表例子
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="flot-line-chart-multi",style={padding:0,position:"relative"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 动态线性图表例子
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="flot-line-chart-moving",style={padding:0,position:"relative"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 柱状图表例子
+				.panel-body
+					.flot-chart
+						.flot-chart-content(id="flot-bar-chart",style={padding:0,position:"relative"})
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading Flot图表的用处
+				.panel-body
+					p Flot图表采用canvas制图，灵活方便，完成各种2d图表
+					a.btn.btn-default.btn-lg.btn-block(target="_blank") 查看细节
+block jsThis
+	script(src="/js/data/js/flot-data.js")
+	script(src="/styles/flot/jquery.flot.time.js")
+	script(src="/styles/flot/jquery.flot.pie.js")
+
+				

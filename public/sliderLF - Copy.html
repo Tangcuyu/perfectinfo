@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+ <body>
+ <iframe src="sliderLF.html" width="500" height="400" id="iframe" name="dd">
+   </iframe>
+ </body>
+ <script>
+window.onload=function(){
+ var iframe=document.getElementById("iframe").contentWindow;
+
+console.log(iframe.document.getElementById("test").innerHTML)
+}
+
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+extends ../layouts/navWu
+block navCon
+	.row
+		.col-lg-12
+			h1.page-header morris图表
+	.row
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 区域图表例子
+				.panel-body
+					div(id="morris-area-chart",style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 柱状图表例子
+				.panel-body
+					div(id="morris-bar-chart",style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 线性图表例子
+				.panel-body
+					div(id="morris-line-chart",style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+		.col-lg-6
+			.panel.panel-default
+				.panel-heading 饼状图表例子
+				.panel-body
+					div(id="morris-donut-chart",style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading Morris 图表的用处
+				.panel-body
+					p Morris图表采用svg制图，灵活方便，完成各种2d图表
+					a(target="_blank",class="btn btn-default btn-lg btn-block",href="") 查看细节
+block jsThis
+	script(src="/js/data/js/morris-data.js")
+	
+
+				

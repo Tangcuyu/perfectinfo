@@ -52,6 +52,8 @@ exports = module.exports = function(app) {
 	app.get('/sheet/:customer?', routes.views.sheet);//IT服务
 	app.get('/sheet/worksheet/:worksheet', routes.views.worksheet); //IT服务子目录
 	app.get('/game', routes.views.game);	//HTML5游戏
+	app.get('/flot', routes.views.flot);	//flot 图表
+	app.get('/morris', routes.views.morris);	//morris 图表
 	app.get('/gallery', routes.views.gallery);  //图片分享
 	app.all('/contact', routes.views.contact);	//留言
 	

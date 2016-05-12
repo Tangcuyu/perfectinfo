@@ -1,0 +1,81 @@
+extends default
+block css
+	link(href="/styles/bootstrap.min.css",rel="stylesheet")
+	link(href="/styles/font-awesome/css/font-awesome.min.css",rel="stylesheet")
+	link(href="/styles/metisMenu/dist/metisMenu.min.css",rel="stylesheet")
+	link(href="/styles/morrisjs/morris.css",rel="stylesheet")
+	link(href="/styles/dist/css/sb-admin-2.css",rel="stylesheet")
+	link(href="/styles/dist/css/timeline.css",rel="stylesheet")
+	style.
+		.navbar-nav>li>a{
+		 padding:10px 15px;
+		 line-height:18px
+		}
+block content
+	nav(class="navbar navbar-default,navbar-static-top",style={"margin-bottom":0,"min-height":0})
+		div(class="navbar-default sidebar",role="navigation",style={"margin-top":0})
+			div(class="sidebar-nav navbar-collapse")
+				ul(class="nav in",id="side-menu")
+					li(class="sidebar-search")
+						div(class="input-group custom-search-form")
+							input(class="form-control",placeholder="搜索…")
+							span(class="input-group-btn")
+								button(class="btn btn-default",type="button")
+									i(class="fa fa-search")
+					li
+						a(href="/game",class="active")
+							i(class="fa fa-dashboard fa-fw") 
+							= " 仪表板"
+					li
+						a(href="#")
+							i(class="fa fa-bar-chart-o fa-fw")
+							= " 图表"
+							span(class="fa arrow")
+						ul(class="nav nav-second-level collapse")
+							li
+								a(href="/flot") Flot 图表
+							li
+								a(href="/morris") Morris.js 图表
+					li
+						a(href="#")
+							i(class="fa fa-table fa-fw")
+							= " 表格"
+					li
+						a(href="#")
+							i(class="fa fa-edit fa-fw")
+							= " 表单"
+					li
+						a(href="#")
+							i(class="fa fa-wrench fa-fw")
+							= " UI 组件"
+							span(class="fa arrow")
+						ul(class="nav nav-second-level collapse",aria-expanded="false",style={height:0})
+							li
+								a(href="#") 面板和友好框
+							li
+								a(href="#") 按钮
+							li
+								a(href="#") 通知
+							li
+								a(href="#") 排版
+							li
+								a(href="#")  图标
+							li
+								a(href="#")  网格
+	div#page-wrapper(style={"min-height":"348px"})
+		block navCon
+block js
+	script(src="/styles/metisMenu/dist/metisMenu.min.js")
+	script(src="/styles/flot/jquery.flot.js")
+	script(src="/styles/flot/jquery.flot.tooltip.min.js")
+	script(src="/styles/morrisjs/morris.min.js")
+	script(src="/styles/dist/js/sb-admin-2.js")
+	script(src="/styles/raphael/raphael-min.js")
+	//script(src="/js/data/js/flot-data.js")
+	//script(src="/js/data/js/morris-data.js")
+	block jsThis
+				
+					
+						
+			
+				
