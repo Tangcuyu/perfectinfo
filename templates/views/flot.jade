@@ -1,4 +1,6 @@
 extends ../layouts/navWu
+block cssThis
+	link(href="/styles/flot/index.css",rel="stylesheet")
 block navCon
 	.row
 		.col-lg-12
@@ -10,6 +12,7 @@ block navCon
 				.panel-body
 					.flot-chart
 						.flot-chart-content(id="noise",style={padding:0,position:"relative"})
+							div#main
 	.row
 		.col-lg-12
 			.panel.panel-default
@@ -51,5 +54,10 @@ block jsThis
 	script(src="/js/data/js/flot-data.js")
 	script(src="/styles/flot/jquery.flot.time.js")
 	script(src="/styles/flot/jquery.flot.pie.js")
+	script(src="/styles/flot/d3.v2.js")
+	script(src="/styles/flot/cubism.v1.js")
+	script(src="/styles/flot/highlight.min.js")
+	script(src="/styles/flot/websocket.min.js")
+	script(src="/styles/flot/index.js")
 
 				

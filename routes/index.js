@@ -36,7 +36,7 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
-	
+	require("../tsd")(app)
 	
 	// Views
 	app.get('/', routes.views.index);		//首页
