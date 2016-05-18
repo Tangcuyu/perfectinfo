@@ -38,6 +38,7 @@ websocket(function(socket) {
     .step(1e3)
     .size(widthMain);
 
+
   function metric(name) {
 
     cache[name] = [];
