@@ -29,7 +29,7 @@ websocket(function(socket) {
     .serverDelay(0)
     .clientDelay(0)
     .step(1e3)
-    .size(768);
+    .size(960);
 
   function metric(name) {
 
@@ -81,5 +81,3 @@ websocket(function(socket) {
   }
 
 });
-
-

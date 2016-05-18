@@ -34,10 +34,11 @@ var routes = {
 	auth: importRoutes('./auth')
 };
 
+require("../lib/tsd")();
+
 // Setup Route Bindings
 exports = module.exports = function(app) {
-	require("../tsd")(app)
-	
+
 	// Views
 	app.get('/', routes.views.index);		//首页
 	app.get('/bloglist', routes.views.bloglist);  //技能培训
