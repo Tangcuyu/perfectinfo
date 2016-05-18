@@ -1,4 +1,11 @@
 
++function(){
+ var widthMain=$("#main").width()
+ var context;
+ $(window).resize(function(){
+  widthMain=$("#main").width()
+  context.size(widthMain)
+  })
 websocket(function(socket) {
 
   var cache = {};
@@ -25,11 +32,12 @@ websocket(function(socket) {
 	  console.log(err);
   });
 
-  var context = cubism.context()
+     context = cubism.context()
     .serverDelay(0)
     .clientDelay(0)
     .step(1e3)
-    .size(768);
+    .size(widthMain);
+
 
   function metric(name) {
 
@@ -82,4 +90,4 @@ websocket(function(socket) {
 
 });
 
-
+}()
