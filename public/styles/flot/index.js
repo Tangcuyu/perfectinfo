@@ -2,10 +2,7 @@
 +function(){
  var widthMain=$("#main").width()
  var context;
- $(window).resize(function(){
-  widthMain=$("#main").width()
-  context.size(widthMain)
-  })
+
 websocket(function(socket) {
 
   var cache = {};
