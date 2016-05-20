@@ -6,11 +6,10 @@ require('dotenv').load();
 // Require keystone
 var keystone = require('keystone'),
 	pkg = require('./package.json');
-//var WebSocketServer = require('./lib/tsd/node_modules/ws').Server;
 
-// Initialis e Keystone with your project's configuration.
-// See http://keystonejs.com/guide/config for available options
-// and documentation.
+// Create our application with express;
+// Because the Websocket server need a http server, use our http server instead of the keystone's http server.
+// use keystone's mount function 
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -23,12 +22,13 @@ var port = {
 	tcp: process.env.TPORT
 }
 
+// Strat the tcp server and websocket server 
 require("./lib/tsd")(port,server);
 
-
+//Connect keystone to our application
 keystone.connect(app);
 
-
+//Initialize keystone module
 keystone.init({
 
 	'name': 'PerfectInfo',
@@ -120,7 +120,7 @@ keystone.set('nav', {
 	'留言板': 'enquiries'
 });
 
-//mount 
+//mount keystone to our application
 
 keystone.mount('/',app,{
 	onMount: function(){
@@ -132,7 +132,7 @@ keystone.mount('/',app,{
 
 theEvent.on('keystone ready',function(){
 	server.listen(process.env.PORT,function(){
-		console.log('perfectinfo start on %s',process.env.PORT);
+		console.log('Our application Perfectinfo start on %s',process.env.PORT);
 	});
 });
 
