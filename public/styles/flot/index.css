@@ -23,14 +23,23 @@
 #body > blockquote {
   width: 640px;
 }
-
-
-
-
-
-
-
-
+#noise{
+text-align:center
+}
+#noise:before{
+ 	content:"";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+#wrapper{
+ display:inline-block;
+ vertical-align:middle
+}
+#main{margin:0 auto}
+#noise{
+overflow:auto;
+}
 
 
 
