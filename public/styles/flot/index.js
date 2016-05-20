@@ -2,7 +2,7 @@
 +function(){
  var widthMain=$("#main").width()
  var context;
-
+$("#main").css("width",widthMain)
 websocket(function(socket) {
 
   var cache = {};

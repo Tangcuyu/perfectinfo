@@ -23,16 +23,23 @@
 #body > blockquote {
   width: 640px;
 }
-#main canvas{position:absolute;right:0;top:0}
-#main .axis{float:right;width:100%;position:relative;height:25px}
-#main .axis svg{position:absolute;right:0;top:0}
-#main .horizon{float:right;width:100%}
-#main .rule{float:right;width:100%}
-#main{overflow:hidden}
-
-
-
-
+#noise{
+text-align:center
+}
+#noise:before{
+ 	content:"";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+#wrapper{
+ display:inline-block;
+ vertical-align:middle
+}
+#main{margin:0 auto}
+#noise{
+overflow:auto;
+}
 
 
 
