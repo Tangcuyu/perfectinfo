@@ -11,6 +11,23 @@ var keystone = require('keystone'),
 // Initialis e Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var EventEmitter = require('events').EventEmitter;
+
+var theEvent = new EventEmitter();
+var WebSocketServer = require('ws').Server;
+var port = {
+	http: process.env.PORT,
+	tcp: process.env.TPORT
+}
+
+require("./lib/tsd")(port,server);
+
+
+keystone.connect(app);
+
 
 keystone.init({
 
@@ -103,9 +120,21 @@ keystone.set('nav', {
 	'留言板': 'enquiries'
 });
 
-// Start Keystone to connect to your database and initialise the web server
+//mount 
 
-keystone.start();
+keystone.mount('/',app,{
+	onMount: function(){
+		theEvent.emit('keystone ready');
+	}
+});
+// Start Keystone to connect to your database and initialise the web server
+//keystone.start();
+
+theEvent.on('keystone ready',function(){
+	server.listen(process.env.PORT,function(){
+		console.log('perfectinfo start on %s',process.env.PORT);
+	});
+});
 
 
 
