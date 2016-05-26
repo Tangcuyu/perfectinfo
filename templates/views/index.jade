@@ -1,6 +1,15 @@
 extends ../layouts/default
 block css
+	link(href="/styles/bootstrap.min.css",rel="stylesheet")
+	link(href="/styles/main.css",rel="stylesheet")
+	link(href="/styles/font-awesome/css/font-awesome.min.css",rel="stylesheet")
 	style.
+		html{background:#f7f7f7}
+		.kePublic{padding:50px}
+		.navbar-nav>li>a {
+			padding: 10px 15px;
+			line-height: 18px;
+					}
 		.axis path,
 		.axis line {
 			fill: none;
@@ -24,6 +33,165 @@ block css
 		}
 
 block content
+	div#home-3(class="page-wrapper full-width light-bg",style={"background-color":"white"})
+		div#slider
+			div#carousel-main(class="carousel slide")
+				.carousel-inner
+					.item.active
+						img(src="/images/slider-1.jpg",width="1920",height="1024")
+						.carousel-caption
+							.container
+								h2 Introducing Starter
+								p.lead
+									| We bring some of the world's best money managers
+									br
+									| to the core of your portfolio
+								a.btn.btn-success.btn-lg(href="") Preview
+								| &nbsp &nbsp
+								a.btn.btn-default.btn-lg(href="") Download
+					.item
+						img(src="/images/slider-3.jpg",width="1920",height="1024")
+						.carousel-caption
+							.container
+								h2 Introducing Starter
+								p.lead
+									| We bring some of the world's best money managers
+									br
+									| to the core of your portfolio
+								a.btn.btn-success.btn-lg(href="") Preview
+								| &nbsp &nbsp
+								a.btn.btn-default.btn-lg(href="") Download
+				a.left.carousel-control(href="#carousel-main",data-slide="prev")
+					i.fa.fa-angle-left
+				a.right.carousel-control(href="#carousel-main",data-slide="next")
+					i.fa.fa-angle-right
+	div#portfolio.page-wrapper.full-width.light-bg(style={background:"#ffffff"})
+		.title-area
+			h2 Our Portfolio
+			p.subtitle Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+		.page-fullwdth-content
+			div#recent-projects.portfolio.clearfix
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-01.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-02.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-03.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-04.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-05.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-06.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-07.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+				.col-xs-6.col-sm-3
+					.portfolio-item
+						img.img-responsive(src="/images/portfolio-08.jpg")
+						.overlay
+							a.btn-preview(data-rel="prettyPhoto",href="")
+								i.fa.fa-link
+	div.page-wrapper.full-width.light-bg(style={background:"#f5f5f5"})
+		.title-area
+			h2 Our Portfolio
+			p.subtitle Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+		.page-fullwdth-content
+			div.portfolio.clearfix
+				.container
+					.row
+						.col-xs-12.col-md-6
+							.w-wrapper
+								i.w-icon.w-icon1
+								h3 博客导入导出
+								p 方便的从其他博客平台导入数据
+						.col-xs-12.col-md-6
+							.w-wrapper
+								i.w-icon.w-icon2
+								h3 博客导入导出
+								p 方便的从其他博客平台导入数据
+						.col-xs-12.col-md-6
+							.w-wrapper
+								i.w-icon.w-icon1
+								h3 博客导入导出
+								p 方便的从其他博客平台导入数据
+						.col-xs-12.col-md-6
+							.w-wrapper
+								i.w-icon.w-icon2
+								h3 博客导入导出
+								p 方便的从其他博客平台导入数据
+	div.page-wrapper.full-width.light-bg(style={background:"#ffffff"})
+		.page-fullwdth-content
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.feature-box.col-md-4.col-sm-6.col-xs-12
+				.feature-box-1.pull-left.color-1
+					span
+						i.fa.fa-star-o.icon-custom-style
+				.feature-box-2
+					h3 Wordpress Themes
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
+			.clearfix
 	//.weather
 	//	.snowy
 	.jumbotron.kePublic.container-fluid
@@ -132,6 +300,8 @@ block content
 					a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary 新增课程
 				|  按此按钮进入管理界面.
 block js
+	script.
+		$('.carousel').carousel()
 	//script(src='/js/lib/d3/9.js')
 	script(src='/js/lib/d3/10.js')
 	script(src='/js/lib/d3/6.js')
