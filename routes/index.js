@@ -34,7 +34,7 @@ var routes = {
 	auth: importRoutes('./auth')
 };
 
-require("../lib/tsd")();
+//require("../lib/tsd")();
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
