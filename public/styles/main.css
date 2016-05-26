@@ -980,3 +980,15 @@ h3{
     line-height: 28px;
     text-align: left;
 }
+#footer{
+width:100%;background:#f5f5f5;text-align:center;font-size:12px;line-height:1.1;padding:30px 0 30px 0 
+}
+#footer a{
+ margin-right:15px;color:#89919c;
+}
+.kePublic{
+margin-bottom:0;padding-top:60px;background:transparent;padding-bottom:0
+}
+.jumbotron {background:transparent;padding-bottom:0}
+.kePublic .rowcenter{margin-left:0}
+.jumbotron.kePublic{height:auto;padding-bottom:0}
