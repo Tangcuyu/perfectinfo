@@ -1,42 +1,25 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Socket.IO chat</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-    </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.min.js"></script>
-	<script>
-		var socket = io();
-		$('form').submit(function(){
-			socket.emit('chat message',$('#m').val());
-			$('#m').val('');
-			return false;
-		});
-		socket.on('chat message',function(msg){
-			$('#messages').append($('<li>').text(msg));
-		});
-		socket.on('disconnect',function(msg){
-			$('#messages').append($('<li>').text(msg));
-		});
-		socket.on('connected',function(msg){
-			$('#messages').append($('<li>').text(msg));
-		});
-		
-	</script>
-  </body>
-</html>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Time Series Data</title>
+<link rel="stylesheet" href="css/index.css">
+
+</style>
+<div id="body">
+
+<h2>Time Series Data</h2>
+
+  <div id="main"></div>
+
+  <p><aside>把鼠标移动到某一时刻，可以获取那个时刻的测量数值.<br></aside>
+
+  <div id="log"></div>
+
+</div>
+
+<script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/js/d3.v2.js"></script>
+<script src="/js/cubism.v1.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/js/socket.io.js"></script>
+<script src="/js/index.js"></script>
