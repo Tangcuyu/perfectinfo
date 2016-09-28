@@ -17,10 +17,9 @@
 	}
 
 	.file-details {
-		&:extend(.u-clearfix all);
-		
+		overflow: hidden;
 		.file-values {
-			.FormInput-noedit {
+			.field-value {
 				width: auto;
 				min-width: 1px;
 				float: left;
@@ -35,13 +34,10 @@
 			text-align: center;
 			width: 100%;
 		}
-		& + .file-toolbar {
-			margin-top: @input-vspacing;
-		}
 	}
-	
-	.file-toolbar {
-		&:extend(.u-clearfix all);
+
+	.file-details + .file-toolbar {
+		margin-top: @input-vspacing;
 	}
 
 	.upload-queued, .delete-queued {
@@ -81,7 +77,7 @@
 	}
 	.file-preview.remove {
 		img {
-			opacity: .3;
+			.opacity(.3);
 		}
 	}
 	.delete-pending {

@@ -99,14 +99,14 @@ keystone.set('nav', {
 });
 
 // Start Keystone to connect to your database and initialise the web server
-// Inject the tsd module to start();
+// Inject the socksd module to start();
 keystone.start(function(){
 	var realtimeport = {
 			http: process.env.PORT,
 			tcp: process.env.TPORT
 		};
 		
-	require("./lib/tsd")(realtimeport,keystone.httpServer);
+	require("./lib/socksd")(realtimeport,keystone.httpServer);
 });
 
 

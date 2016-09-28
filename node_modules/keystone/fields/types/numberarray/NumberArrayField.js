@@ -1,14 +1,14 @@
-import ArrayFieldMixin from '../../mixins/ArrayField';
-import Field from '../Field';
+var Field = require('../Field'),
+	ArrayFieldMixin = require('../../mixins/ArrayField');
 
 module.exports = Field.create({
-
+	
 	displayName: 'NumberArrayField',
-
+	
 	mixins: [ArrayFieldMixin],
-
-	cleanInput (input) {
+	
+	cleanInput: function(input) {
 		return input.replace(/[^\d]/g, '');
 	}
-
+	
 });

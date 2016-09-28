@@ -1,11 +1,11 @@
-var _ = require('underscore'),
-	fs = require('fs'),
-	path = require('path'),
-	async = require('async'),
-	semver = require('semver'),
-	keystone = require('../'),
-	mongoose = keystone.mongoose,
-	utils = require('keystone-utils');
+var _ = require('underscore');
+var async = require('async');
+var fs = require('fs');
+var keystone = require('../');
+var mongoose = keystone.mongoose;
+var path = require('path');
+var semver = require('semver');
+var utils = require('keystone-utils');
 
 var _dashes_ = '------------------------------------------------';
 
@@ -19,12 +19,20 @@ mongoose.model('App_Update', UpdateModel);
 // Apply method - loads the available updates and applies any that haven't been, in order
 exports.apply = function(callback) {
 
-	var Update = mongoose.model('App_Update'),
-		updateCount = 0,
-		deferCount = 0,
-		skipCount = 0;
+	var Update = mongoose.model('App_Update');
+	var updateCount = 0;
+	var deferCount = 0;
+	var skipCount = 0;
 
 	var updatesPath = keystone.getPath('updates', 'updates');
+
+	// logError is used to log errors before the process exits since it is more synchronous than console.error.  Using 
+	// console.error gets into race condition issues with process.exit, which has higher priority.
+	var logError = function() {
+		for (var i = 0, len = arguments.length; i < len; ++i) {
+			process.stderr.write(arguments[i] + '\n');
+		}
+	};
 
 	var applyUpdate = function(file, done) {
 		Update.findOne({ key: file }, function(err, updateRecord) {
@@ -43,10 +51,30 @@ exports.apply = function(callback) {
 				if (_.isObject(update.create)) {
 					var items = update.create,
 						ops = update.options || {};
+					var background_mode = update.__background__ ? ' (background mode) ' : '';
+					
 					update = function(done) {
 						keystone.createItems(items, ops, function(err, stats) {
-							stats && console.log(stats.message);
-							done(err);
+							if (!err) {
+								var statsMsg = stats ? stats.message : '';
+
+								console.log('\n' + _dashes_,
+									'\n' + keystone.get('name') + ': Successfully applied update ' + file + background_mode + '.',
+									'\n' + statsMsg,
+									'\n');
+								done(null);
+							}
+							else {
+								logError('\n' + _dashes_,
+									'\n' + keystone.get('name') + ': Update ' + file + background_mode + ' failed with errors:',
+									'\n' + err,
+									'\n');
+
+								// give the logging some time to finish
+								process.nextTick(function() {
+									done(err);
+								});
+							}
 						});
 					};
 				}
@@ -69,30 +97,21 @@ exports.apply = function(callback) {
 				if (update.__background__) {
 					updateCount++;
 					update(function(err) {
-						if (err) {
-							console.log(_dashes_ + '\nUpdate ' + file + ' (background mode) failed with error:');
-							console.log(err);
-						} else {
-							console.log(_dashes_ + '\nSuccessfully applied update ' + file + ' (in background).');
+						if (!err) {
 							if (update.__commit__ !== false) {
-								new Update({key: file}).save();
+								new Update({ key: file }).save();
 							}
 						}
 					});
 					done();
 				} else {
 					update(function(err) {
-						if (err) {
-							console.log(_dashes_ + '\nUpdate ' + file + ' failed with error:');
-							console.log(err);
-							done(err);
-						} else {
+						if (!err) {
 							updateCount++;
-							console.log(_dashes_ + '\nSuccessfully applied update ' + file + '.');
 							if (update.__commit__ === false) {
 								done();
 							} else {
-								new Update({key: file}).save(done);
+								new Update({ key: file }).save(done);
 							}
 						}
 					});
@@ -150,17 +169,14 @@ exports.apply = function(callback) {
 			if (!(updateCount || deferCount || skipCount)) {
 				errmsg = _dashes_ + '\n' + errmsg;
 			}
-			console.error(errmsg);
-			console.error(err);
-			if ('stack' in err) {
-				console.trace(err.stack);
-			}
+			logError(errmsg);
+			logError(err);
 			// wait till nextTick to exit so the trace completes.
 			process.nextTick(function() {
 				process.exit(1);
 			});
 			return;
 		}
-		callback && callback();
+		callback && callback();// eslint-disable-line no-unused-expressions
 	});
 };

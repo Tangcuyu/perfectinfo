@@ -1,12 +1,11 @@
-import Field from '../Field';
-import React from 'react';
-import { FormInput } from 'elemental';
+var React = require('react'),
+	Field = require('../Field');
 
 module.exports = Field.create({
-
+	
 	displayName: 'MoneyField',
-
-	valueChanged (event) {
+	
+	valueChanged: function(event) {
 		var newValue = event.target.value.replace(/[^\d\s\,\.\$€£¥]/g, '');
 		if (newValue === this.props.value) return;
 		this.props.onChange({
@@ -14,9 +13,9 @@ module.exports = Field.create({
 			value: newValue
 		});
 	},
-
-	renderField () {
-		return <FormInput name={this.props.path} ref="focusTarget" value={this.props.value} onChange={this.valueChanged} autoComplete="off" />;
+	
+	renderField: function() {
+		return <input type="text" name={this.props.path} ref="focusTarget" value={this.props.value} onChange={this.valueChanged} autoComplete="off" className="form-control" />;
 	}
 	
 });

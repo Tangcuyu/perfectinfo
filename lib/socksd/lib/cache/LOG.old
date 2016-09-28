@@ -1,5 +1,5 @@
-2016/06/06-15:41:42.047639 b4bffb70 Recovering log #6
-2016/06/06-15:41:42.048576 b4bffb70 Level-0 table #8: started
-2016/06/06-15:41:42.084660 b4bffb70 Level-0 table #8: 4654 bytes OK
-2016/06/06-15:41:42.152446 b4bffb70 Delete type=0 #6
-2016/06/06-15:41:42.152553 b4bffb70 Delete type=3 #4
+2016/09/28-17:16:23.220502 b20fcb70 Recovering log #175
+2016/09/28-17:16:23.464424 b20fcb70 Level-0 table #179: started
+2016/09/28-17:16:23.653921 b20fcb70 Level-0 table #179: 494684 bytes OK
+2016/09/28-17:16:23.710845 b20fcb70 Delete type=3 #117
+2016/09/28-17:16:23.711058 b20fcb70 Delete type=0 #175

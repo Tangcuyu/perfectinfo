@@ -15,10 +15,10 @@ exports = module.exports = function Path(str) {
 	this.original = str;
 
 	var parts = this.parts = str.split('.');
-	var last = this.last = this.parts[this.parts.length-1];
+	var last = this.last = this.parts[this.parts.length - 1];
 	var exceptLast = [];
 
-	for (var i = 0; i < parts.length-1; i++) {
+	for (var i = 0; i < parts.length - 1; i++) {
 		exceptLast.push(parts[i]);
 	}
 
@@ -27,8 +27,9 @@ exports = module.exports = function Path(str) {
 	this.addTo = function(obj, val) {
 		var o = obj;
 		for (var i = 0; i < parts.length - 1; i++) {
-			if (!utils.isObject(o[parts[i]]))
+			if (!utils.isObject(o[parts[i]])) {
 				o[parts[i]] = {};
+			}
 			o = o[parts[i]];
 		}
 		o[last] = val;

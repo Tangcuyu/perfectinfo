@@ -76,7 +76,7 @@ Markdown.prototype = {
 				var z,
 						buttons = btnGroups[y].data,
 						btnGroupContainer = $('<div/>', {
-																	'class': 'md-editor__btn-group'
+																	'class': 'btn-group'
 																})
 
 				for (z=0;z<buttons.length;z++) {
@@ -85,16 +85,16 @@ Markdown.prototype = {
 							buttonHandler = ns+'-'+button.name,
 							buttonIcon = this.__getIcon(button.icon),
 							btnText = button.btnText ? button.btnText : '',
-							btnClass = button.btnClass ? button.btnClass : 'md-editor__btn',
+							btnClass = button.btnClass ? button.btnClass : 'btn',
 							tabIndex = button.tabIndex ? button.tabIndex : '-1',
 							hotkey = typeof button.hotkey !== 'undefined' ? button.hotkey : '',
 							hotkeyCaption = typeof jQuery.hotkeys !== 'undefined' && hotkey !== '' ? ' ('+hotkey+')' : ''
 
 					// Construct the button object
 					buttonContainer = $('<button></button>');
-					buttonContainer.text(' ' + this.__localize(btnText)).addClass('md-editor__btn').addClass(btnClass);
-					if(btnClass.match(/md-editor__btn\--(primary|success|info|warning|danger|link)/)){
-							buttonContainer.removeClass('md-editor__btn');
+					buttonContainer.text(' ' + this.__localize(btnText)).addClass('btn-default btn-sm').addClass(btnClass);
+					if(btnClass.match(/btn\-(primary|success|info|warning|danger|link)/)){
+							buttonContainer.removeClass('btn-default');
 					}
 					buttonContainer.attr({
 							'type': 'button',
@@ -199,11 +199,11 @@ Markdown.prototype = {
 
 	if (mode === true) {
 		$editor.addClass('md-fullscreen-mode')
-		$('body').addClass('md-editor--no-overflow')
+		$('body').addClass('md-nooverflow')
 		this.$options.onFullscreen(this)
 	} else {
 		$editor.removeClass('md-fullscreen-mode')
-		$('body').removeClass('md-editor--no-overflow')
+		$('body').removeClass('md-nooverflow')
 	}
 
 	this.$isFullscreen = mode;
@@ -232,7 +232,7 @@ Markdown.prototype = {
 		if (this.$editor == null) {
 			// Create the panel
 			var editorHeader = $('<div/>', {
-													'class': 'md-editor__header btn-toolbar'
+													'class': 'md-header btn-toolbar'
 													})
 
 			// Merge the main & additional button groups together
@@ -450,7 +450,7 @@ Markdown.prototype = {
 		var options = this.$options,
 				container = this.$textarea,
 				afterContainer = container.next(),
-				replacementContainer = $('<div/>',{'class':'md-editor__preview','data-provider':'markdown-preview'}),
+				replacementContainer = $('<div/>',{'class':'md-preview','data-provider':'markdown-preview'}),
 				content
 
 		// Give flag that tell the editor enter preview mode
@@ -893,7 +893,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdBold',
 				hotkey: 'Ctrl+B',
 				title: 'Bold',
-				icon: { glyph: 'mce-ico mce-i-bold', fa: 'fa fa-bold', 'fa-3': 'icon-bold' },
+				icon: { glyph: 'glyphicon glyphicon-bold', fa: 'fa fa-bold', 'fa-3': 'icon-bold' },
 				callback: function(e){
 					// Give/remove ** surround the selection
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
@@ -923,7 +923,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdItalic',
 				title: 'Italic',
 				hotkey: 'Ctrl+I',
-				icon: { glyph: 'mce-ico mce-i-italic', fa: 'fa fa-italic', 'fa-3': 'icon-italic' },
+				icon: { glyph: 'glyphicon glyphicon-italic', fa: 'fa fa-italic', 'fa-3': 'icon-italic' },
 				callback: function(e){
 					// Give/remove * surround the selection
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
@@ -949,6 +949,40 @@ $.fn.markdown.defaults = {
 					// Set the cursor
 					e.setSelection(cursor,cursor+chunk.length)
 				}
+			},{
+				name: 'cmdHeading',
+				title: 'Heading',
+				hotkey: 'Ctrl+H',
+				icon: { glyph: 'glyphicon glyphicon-header', fa: 'fa fa-font', 'fa-3': 'icon-font' },
+				callback: function(e){
+					// Append/remove ### surround the selection
+					var chunk, cursor, selected = e.getSelection(), content = e.getContent(), pointer, prevChar
+
+					if (selected.length == 0) {
+						// Give extra word
+						chunk = e.__localize('heading text')
+					} else {
+						chunk = selected.text + '\n';
+					}
+
+					// transform selection and set the cursor into chunked text
+					if ((pointer = 4, content.substr(selected.start-pointer,pointer) == '### ')
+							|| (pointer = 3, content.substr(selected.start-pointer,pointer) == '###')) {
+						e.setSelection(selected.start-pointer,selected.end)
+						e.replaceSelection(chunk)
+						cursor = selected.start-pointer
+					} else if (selected.start > 0 && (prevChar = content.substr(selected.start-1,1), !!prevChar && prevChar != '\n')) {
+						e.replaceSelection('\n\n### '+chunk)
+						cursor = selected.start+6
+					} else {
+						// Empty string before element
+						e.replaceSelection('### '+chunk)
+						cursor = selected.start+4
+					}
+
+					// Set the cursor
+					e.setSelection(cursor,cursor+chunk.length)
+				}
 			}]
 		},{
 			name: 'groupLink',
@@ -956,7 +990,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdUrl',
 				title: 'URL/Link',
 				hotkey: 'Ctrl+L',
-				icon: { glyph: 'mce-ico mce-i-link', fa: 'fa fa-link', 'fa-3': 'icon-link' },
+				icon: { glyph: 'glyphicon glyphicon-link', fa: 'fa fa-link', 'fa-3': 'icon-link' },
 				callback: function(e){
 					// Give [] surround the selection and prepend the link
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent(), link
@@ -985,7 +1019,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdImage',
 				title: 'Image',
 				hotkey: 'Ctrl+G',
-				icon: { glyph: 'mce-ico mce-i-image', fa: 'fa fa-picture-o', 'fa-3': 'icon-picture' },
+				icon: { glyph: 'glyphicon glyphicon-picture', fa: 'fa fa-picture-o', 'fa-3': 'icon-picture' },
 				callback: function(e){
 					// Give ![] surround the selection and prepend the image link
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent(), link
@@ -1020,7 +1054,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdList',
 				hotkey: 'Ctrl+U',
 				title: 'Unordered List',
-				icon: { glyph: 'mce-ico mce-i-bullist', fa: 'fa fa-list', 'fa-3': 'icon-list-ul' },
+				icon: { glyph: 'glyphicon glyphicon-list', fa: 'fa fa-list', 'fa-3': 'icon-list-ul' },
 				callback: function(e){
 					// Prepend/Give - surround the selection
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
@@ -1067,7 +1101,7 @@ $.fn.markdown.defaults = {
 				name: 'cmdListO',
 				hotkey: 'Ctrl+O',
 				title: 'Ordered List',
-				icon: { glyph: 'mce-ico mce-i-numlist', fa: 'fa fa-list-ol', 'fa-3': 'icon-list-ol' },
+				icon: { glyph: 'glyphicon glyphicon-th-list', fa: 'fa fa-list-ol', 'fa-3': 'icon-list-ol' },
 				callback: function(e) {
 
 					// Prepend/Give - surround the selection
@@ -1111,10 +1145,42 @@ $.fn.markdown.defaults = {
 				}
 			},
 			{
+				name: 'cmdCode',
+				hotkey: 'Ctrl+K',
+				title: 'Code',
+				icon: { glyph: 'glyphicon glyphicon-asterisk', fa: 'fa fa-code', 'fa-3': 'icon-code' },
+				callback: function(e) {
+
+					// Give/remove ** surround the selection
+					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
+
+					if (selected.length == 0) {
+						// Give extra word
+						chunk = e.__localize('code text here')
+					} else {
+						chunk = selected.text
+					}
+
+					// transform selection and set the cursor into chunked text
+					if (content.substr(selected.start-1,1) == '`'
+							&& content.substr(selected.end,1) == '`' ) {
+						e.setSelection(selected.start-1,selected.end+1)
+						e.replaceSelection(chunk)
+						cursor = selected.start-1
+					} else {
+						e.replaceSelection('`'+chunk+'`')
+						cursor = selected.start+1
+					}
+
+					// Set the cursor
+					e.setSelection(cursor,cursor+chunk.length)
+				}
+			},
+			{
 				name: 'cmdQuote',
 				hotkey: 'Ctrl+Q',
 				title: 'Quote',
-				icon: { glyph: 'mce-ico mce-i-indent', fa: 'fa fa-quote-left', 'fa-3': 'icon-quote-left' },
+				icon: { glyph: 'glyphicon glyphicon-comment', fa: 'fa fa-quote-left', 'fa-3': 'icon-quote-left' },
 				callback: function(e) {
 					// Prepend/Give - surround the selection
 					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
@@ -1150,38 +1216,6 @@ $.fn.markdown.defaults = {
 							// Set the cursor
 							cursor = selected.start+4
 						}
-					}
-
-					// Set the cursor
-					e.setSelection(cursor,cursor+chunk.length)
-				}
-			},
-			{
-				name: 'cmdCode',
-				hotkey: 'Ctrl+K',
-				title: 'Code',
-				icon: { glyph: 'mce-ico mce-i-code', fa: 'fa fa-code', 'fa-3': 'icon-code' },
-				callback: function(e) {
-
-					// Give/remove ** surround the selection
-					var chunk, cursor, selected = e.getSelection(), content = e.getContent()
-
-					if (selected.length == 0) {
-						// Give extra word
-						chunk = e.__localize('code text here')
-					} else {
-						chunk = selected.text
-					}
-
-					// transform selection and set the cursor into chunked text
-					if (content.substr(selected.start-1,1) == '`'
-							&& content.substr(selected.end,1) == '`' ) {
-						e.setSelection(selected.start-1,selected.end+1)
-						e.replaceSelection(chunk)
-						cursor = selected.start-1
-					} else {
-						e.replaceSelection('`'+chunk+'`')
-						cursor = selected.start+1
 					}
 
 					// Set the cursor

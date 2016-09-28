@@ -13,18 +13,18 @@
  * @api public
  */
 
-var express = require('express');
+var debug = require('debug')('keystone:core:init');
 
 function init(options) {
-	
+	debug('initializing app');
 	this.options(options);
 	
 	if (!this.app) {
-		this.app = express();
+		this.set('app', require('express')());
 	}
 	
 	if (!this.mongoose) {
-		this.connect(require('mongoose'));
+		this.set('mongoose', require('mongoose'));
 	}
 	
 	return this;

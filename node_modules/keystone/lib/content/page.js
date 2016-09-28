@@ -13,10 +13,9 @@ var _ = require('underscore'),
 
 function Page(key, options) {
 	
-	if (!(this instanceof Page))
+	if (!(this instanceof Page)) {
 		return new Page(key, options);
-	
-	var page = this;
+	}
 	
 	this.options = utils.options({
 		// ...
@@ -27,9 +26,11 @@ function Page(key, options) {
 	
 }
 
-Object.defineProperty(Page.prototype, 'name', { get: function() {
-	return this.get('name') || this.set('name', utils.keyToLabel(this.key));
-}});
+Object.defineProperty(Page.prototype, 'name', {
+	get: function() {
+		return this.get('name') || this.set('name', utils.keyToLabel(this.key));
+	}
+});
 
 /**
  * Sets page options
@@ -96,8 +97,9 @@ Page.prototype.add = function(fields) {
 			
 			// Convert native field types to their default Keystone counterpart
 			
-			if (options.type === String)
+			if (options.type === String) {
 				options.type = keystone.content.Types.Text;
+			}
 			
 			// TODO: More types
 			// else if (options.type == Number)
@@ -107,8 +109,9 @@ Page.prototype.add = function(fields) {
 			// else if (options.type == Date)
 			// 	options.type = Field.Types.Datetime;
 			
-			else
+			else {
 				throw new Error('Unrecognised field constructor: ' + options.type);
+			}
 			
 		}
 		
@@ -199,8 +202,3 @@ Page.prototype.clean = function(data) {
  */
 
 exports = module.exports = Page;
-
-
-
-
-

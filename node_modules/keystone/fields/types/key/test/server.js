@@ -53,19 +53,19 @@ exports.testFieldType = function(List) {
 	});
 	
 	it('should invalidate input with stripped characters', function() {
-		List.fields.key.inputIsValid({
+		List.fields.key.validateInput({
 			key: '()'
 		}, true, testItem).must.be.false();
 	});
 	
 	it('should invalidate input with just whitespace', function() {
-		List.fields.key.inputIsValid({
+		List.fields.key.validateInput({
 			key: ' '
 		}, true, testItem).must.be.false();
 	});
 	
 	it('should validate input with non-key characters', function() {
-		List.fields.key.inputIsValid({
+		List.fields.key.validateInput({
 			key: 'A b'
 		}, true, testItem).must.be.true();
 	});

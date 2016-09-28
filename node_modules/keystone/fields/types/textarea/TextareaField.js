@@ -1,15 +1,15 @@
-import Field from '../Field';
-import React from 'react';
+var React = require('react'),
+	Field = require('../Field');
 
 module.exports = Field.create({
-
+	
 	displayName: 'TextareaField',
-
-	renderField () {
+	
+	renderField: function() {
 		var styles = {
 			height: this.props.height
 		};
-		return <textarea name={this.props.path} styles={styles} ref="focusTarget" value={this.props.value} onChange={this.valueChanged} autoComplete="off" className="FormInput" />;
+		return <textarea name={this.props.path} styles={styles} ref="focusTarget" value={this.props.value} onChange={this.valueChanged} autoComplete="off" className="form-control" />;
 	}
-
+	
 });

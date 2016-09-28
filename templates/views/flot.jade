@@ -11,9 +11,7 @@ block navCon
 				.panel-heading 噪音，温度展示
 				.panel-body
 					.flot-chart(style={height:"auto"})
-						.flot-chart-content(id="noise",style={"padding-bottom":"5px",position:"relative"})
-							div#wrapper
-								div#main
+							div#main
 	.row
 		.col-lg-12
 			.panel.panel-default
@@ -55,11 +53,10 @@ block jsThis
 	script(src="/js/data/js/flot-data.js")
 	script(src="/styles/flot/jquery.flot.time.js")
 	script(src="/styles/flot/jquery.flot.pie.js")
-	script(src="/styles/flot/jquery.flot.resize.js")
 	script(src="/styles/flot/d3.v2.js")
 	script(src="/styles/flot/cubism.v1.js")
 	script(src="/styles/flot/highlight.min.js")
-	script(src="/styles/flot/websocket.min.js")
-	script(src="/styles/flot/index.js")
+	script(src="/socksd/js/socket.io.js")
+	script(src="/socksd/js/index.js")
 
 				
