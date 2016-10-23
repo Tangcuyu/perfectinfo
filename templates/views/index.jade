@@ -3,32 +3,6 @@ block css
 	link(href="/styles/bootstrap.min.css",rel="stylesheet")
 	link(href="/styles/main.css",rel="stylesheet")
 	link(href="/styles/font-awesome/css/font-awesome.min.css",rel="stylesheet")
-	style.
-		html{background:#f7f7f7}
-		.kePublic{padding:50px}
-		.navbar-nav>li>a {
-			padding: 10px 15px;
-			line-height: 18px;
-					}
-		.axis path,
-		.axis line {
-			fill: none;
-			stroke: black;
-			shape-rendering: crispEdges;
-			}
-		.axis text {
-			font-family: sans-serif;
-			font-size: 11px;
-			}
-		.backimg {
-			background-image:url('images/roadbg.jpg');
-			background-position:center;
-			}
-		
-		#message {
-			font-size: 16px;
-			text-align: center;
-		}
 
 block content
 	div#home-3(class="page-wrapper full-width light-bg",style={"background-color":"white"})
@@ -174,16 +148,14 @@ block content
 							h3 Wordpress Themes
 							p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor insed do eiusmod
 					.clearfix
-	div.page-wrapper.full-width.light-bg(style={background:"#f9f9f9"})
+	div.page-wrapper.full-width.light-bg(style={background:"#ffffff"})
 		.page-fullwdth-content
 			.container
 				.row
 					.col-md-6.col-xs-12
 						#message
 							a(onclick="startDemo();").btn.btn-lg.btn-info 物联网数据分析
-					.col-md-6.col-xs-12
-						.jumbotron.kePublic.container-fluid
-							.rowcenter
+					.col-md-12.col-xs-12
 								#chart
 	#footer
 		a(href="") 关于我们
@@ -206,10 +178,7 @@ block js
 		$(".feature-box").parent().mouseleave(function(){
 		 $(".feature-box").animate({opacity:1})
 		})
-	//script(src='/js/lib/d3/9.js')
-	script(src='/js/lib/d3/10.js')
-	script(src='/js/lib/d3/6.js')
-	script(src='/js/lib/d3/28.js')
+
 	script(src='/js/lib/d3/c1.js')
 	//script(src='/js/lib/d3/rtexample.js')
 	script(src='/js/lib/highcharts/charts/H1.js')

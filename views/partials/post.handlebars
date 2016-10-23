@@ -1,0 +1,24 @@
+<div class="post">
+	<h4><a href="/bloglist/post/" + {{slug}}>{{titile}}</a></h4>
+	<p class="text-muted">
+		{{#if author}}
+			{{author.name.first}}
+		{{/if}}
+		{{#if publishedDate}}
+			于{{post._.publishedDate.format( 'YYYY年M月D日')}} 发布在
+		{{/if}}
+		{{if categories && categories.length}}
+			在
+			{{#each categories}}
+				<a href="/bloglist/" + {{categories.key}}>{{categories.name}}</a>
+			{{/each}}
+		{{/if}}
+	</p>
+	{{#if image.exists}}
+		<img src="{{post._.image.fit(100,100)}}" class="img pull-right"></img>
+	{{/if}}
+	<p>{{content.brief}}</p>
+	{{#if content.extended}}
+		<p class="read-more"><a href="/bloglist/post/" + {{slug}}> 详细信息...</a></p>
+	{{/if}}
+</div>

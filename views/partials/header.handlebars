@@ -1,0 +1,30 @@
+<header id="header"><div class="container">
+	<nav role="navigation" class="navbar blend-nav">
+						<div class="navbar-header">
+							<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar" style="background:#333"></span><span class="icon-bar" style="background:#333"></span><span class="icon-bar" style="background:#333"></span></button><a href="/" class="navbar-brand"></a> 
+						</div>
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-left head-title">
+								{{#each navLinks}}
+									<li>  
+										<a href="{{href}}">{{label}}</a>
+									</li>
+								{{/each}}
+							</ul>
+							<ul class="nav navbar-nav navbar-right head-title">
+								{{#if user.canAccessKeystone}}
+									<li>
+										<a href="/keystone">系统管理</a>
+									</li>
+									<li>
+										<a href="/keystone/signout">退出</a>
+									</li>
+								{{/if}}
+									<li>
+										<a href="/signin" data-from="{{page.path}}" data-initial="signin" class="js-auth-trigger">登录</a>
+									</li>
+									
+							</ul>
+						</div>
+	</nav>
+</div></header>

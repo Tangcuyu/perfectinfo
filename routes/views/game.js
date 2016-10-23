@@ -8,11 +8,12 @@ exports = module.exports = function(req, res) {
 	
 	// Set locals
 	locals.section = 'game';
+	locals.filters = {
+		action: req.query.action
+	};
 	locals.data = {
 		games: []
 	};
-
-
 
 	// Load other posts
 	view.on('init', function(next) {
@@ -25,7 +26,7 @@ exports = module.exports = function(req, res) {
 		});
 		
 	});
-	
+		
 	// Render the view
 	view.render('game');
 	

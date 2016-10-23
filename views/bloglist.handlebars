@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		{{#if data}}
+			<div class="col-sm-4.col-md-3">
+				<h3>目录</h3>
+				{{data.category}}
+				<br>
+				{{data.categories}}
+				<div class="list-group" style="margin-top: 20px;">
+					<a href="/bloglist" class="{{#unless data.category}}active{{else}}false{{/unless}} list-group-item">全部课程</a>
+					{{#each data.categories}}
+						<a href="/bloglist/{{key}}" class="{{#if ../data.category }}&& {{id}} = {{../../data.categories.id}}
+																		active
+																	{{else}}
+																		false
+																	
+															{{/if}} list-group-item">{{id}}{{name}}</a>
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+		{{#if filters}}
+			<div class="col-sm-8 col-md-9">
+					<h3>
+						{{#if ../data.category}}
+						{{name}}全部课程
+						{{/if}}
+					</h3>
+					<br/>
+					{{#if filters.category}}
+						
+					{{/if}}
+			</div>
+		{{/if}}
+	</div>
+</div>

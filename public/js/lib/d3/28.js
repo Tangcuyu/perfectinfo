@@ -23,7 +23,6 @@
 				
 				if (error) 
 					return console.error(error);
-				console.log(root.features);
 				
 				svg.selectAll("path")
 					.data( root.features )

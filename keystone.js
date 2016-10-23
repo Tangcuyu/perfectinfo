@@ -6,6 +6,19 @@ require('dotenv').load();
 var keystone = require('keystone'),
 	pkg = require('./package.json');
 
+// set up handlebars view engine
+/* var handlebars = require('express3-handlebars').create({
+    defaultLayout:'default',
+    helpers: {
+        section: function(name, options){
+            if(!this._sections) this._sections = {};
+            this._sections[name] = options.fn(this);
+            return null;
+        }
+    }
+}); */
+
+
 //Initialize keystone module
 keystone.init({
 
@@ -15,6 +28,7 @@ keystone.init({
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/itsi_64.ico',
+	//'views': 'views', handlebars view folder
 	'views': 'templates/views',
 	'view engine': 'jade',
 	
@@ -29,8 +43,12 @@ keystone.init({
 
 });
 
-// Load your project's Models
+// Setup handlebars engine
+//keystone.set('view engine', 'handlebars');
+//keystone.set('custom engine',handlebars.engine);
 
+
+// Load your project's Models
 keystone.import('models');
 
  

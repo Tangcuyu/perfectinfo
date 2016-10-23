@@ -16,9 +16,6 @@ html
 		//- Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production.
 		link(href="/styles/site.min.css", rel="stylesheet")
-		//link(href="/styles/zoom.css", rel="stylesheet", media="all")
-		//link(href="/styles/lightbox.css", rel="stylesheet", media="screen")
-		//link(href="/styles/weather.css", rel="stylesheet", media="screen")
 		link(href="/styles/c3.css", rel="stylesheet", media="screen")
 		
 
@@ -33,7 +30,7 @@ html
 			script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
 		//-[endif]
 
-		script(src='/js/lib/d3/d3.min.js')
+
 		//- Include template-specific stylesheets by extending the css block
 		block css
 				
@@ -97,11 +94,9 @@ html
 		//- Add scripts that are globally required by your site here.
 		//- Add D3.js for graphic data
 		
+		script(src='/js/lib/d3/d3.min.js')
 		script(src='/js/lib/c3/c3.min.js')
-		//script(src='/js/lib/d3/cubism.v1.min.js')
 		script(src="/js/lib/highcharts/highcharts.js")
-		//script(src="/js/lib/zoom/zoom.min.js")
-		script(src="/js/lib/lightbox/lightbox-2.6.min.js")
 
 		script(src='/js/ui.js')
 		//- Include template-specific javascript files by extending the js block

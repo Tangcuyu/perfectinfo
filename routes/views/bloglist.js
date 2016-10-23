@@ -50,6 +50,7 @@ exports = module.exports = function(req, res) {
 		if (req.params.category) {
 			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
 				locals.data.category = result;
+				locals.data.category.active = true;
 				next(err);
 			});
 		} else {
@@ -97,6 +98,6 @@ exports = module.exports = function(req, res) {
 	});
 	
 	// Render the view
-	view.render('bloglist');
+	view.render('bloglist',locals);
 	
 };

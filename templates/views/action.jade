@@ -1,0 +1,303 @@
+extends ../layouts/navWu
+block action
+		.row
+			.col-lg-8
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						= " 区域图表例子"
+						.pull-right
+							.btn-group
+								button(type="button",class="btn btn-default btn-xs dropdown-toggle",data-toggle="dropdown",aria-expanded="false")
+									=" 选项 "
+									span.caret
+								ul.dropdown-menu.pull-right
+									li
+										a(href="#") 选项1
+									li
+										a(href="#") 选项2
+									li
+										a(href="#") 其他选项
+									.divider
+									li
+										a(href="#") 链接
+					.panel-body
+						div#morris-area-chart(style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						= " 柱状图表例子"
+						.pull-right
+							.btn-group
+								button(type="button",class="btn btn-default btn-xs dropdown-toggle",data-toggle="dropdown",aria-expanded="false")
+									=" 选项 "
+									span.caret
+								ul.dropdown-menu.pull-right
+									li
+										a(href="#") 选项1
+									li
+										a(href="#") 选项2
+									li
+										a(href="#") 其他选项
+									.divider
+									li
+										a(href="#") 链接
+					.panel-body
+						.row
+							.col-lg-4
+								.table-responsive
+									table.table.table-bordered.table-hover.table-striped
+										thead
+											tr
+												th #
+												th 日期
+												th 时间
+												th 数量
+										tbody
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+											tr
+												td 3326
+												td 10/21/2013
+												td 3:29 pm
+												td $321.33
+							.col-lg-8
+								div#morris-bar-chart(style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-clock-o.fa-fw
+						= " 响应式时间轴 "
+					.panel-body
+						ul.timeline
+							li
+								.timeline-badge
+									i.fa.fa-circle-o-notch
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title 高速轴转速提示
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												= " 2016/3/10 "
+									.timeline-body
+										p 转速
+										p 实时值：1829.66 
+										p 最大值：1878.24 
+										p 最小值：.045 
+										p 平均值：1051.06
+							li.timeline-inverted
+								.timeline-badge.warning
+									i.fa.fa-gears
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title 齿轮箱行星轮径向
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												= " 2016/3/9 "
+									.timeline-body
+										p 振动有效值(g):0.19 
+										p 能量有效值：无数据
+							li
+								.timeline-badge.danger
+									i.fa.fa-bomb
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title 主轴承轴向
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												= " 2016/3/8 "
+									.timeline-body
+										p 峰值因数(g)
+										p 实时值:7.08 
+										p 最大值：12.66 
+										p 最小值6.35 
+										p 平均值：8.05
+							li.timeline-inverted
+								.timeline-badge.info
+									i.fa.fa-life-bouy
+									
+									
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title 发电机输出端轴承轴向包络
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												= " 2016/3/8 "
+									.timeline-body
+										p 包络解调值
+										p 实时值：6 
+										p 最大值：9.65 
+										p 最小值：0 
+										p 平均值：3.12
+			.col-lg-4
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bell.fa-fw
+						= " 通知面板 "
+					.panel-body
+						.list-group
+							a.list-group-item(href="#")
+								i.fa.fa-comment.fa-fw
+								= " 新增评论"
+								span.pull-right.text-muted.small
+									em 4分钟前
+							a.list-group-item(href="#")
+								i.fa.fa-warning.fa-fw
+								= " 风机警报提示 "
+								span.pull-right.text-muted.small
+									em 12分钟前
+							a.list-group-item(href="#")
+								i.fa.fa-envelope.fa-fw
+								= " 新消息提示 "
+								span.pull-right.text-muted.small
+									em 27分钟前
+							a.list-group-item(href="#")
+								i.fa.fa-tasks.fa-fw
+								= " 新增任务 "
+								span.pull-right.text-muted.small
+									em 43分钟前
+							a.list-group-item(href="#")
+								i.fa.fa-rotate-left.fa-fw
+								= " 风机检测系统重启 "
+								span.pull-right.text-muted.small
+									em 11:32AM
+							a.list-group-item(href="#")
+								i.fa.fa-bolt.fa-fw
+								= " 风机检测系统崩溃 "
+								span.pull-right.text-muted.small
+									em 11:13AM
+							a.list-group-item(href="#")
+								i.fa.fa-warning.fa-fw
+								= " 风机检测系统未响应 "
+								span.pull-right.text-muted.small
+									em 10:57AM
+							a.list-group-item(href="#")
+								i.fa.fa-gears.fa-fw
+								= " 内齿圈提示 "
+								span.pull-right.text-muted.small
+									em 9:49AM
+							a.list-group-item(href="#")
+								i.fa.fa-file-text-o.fa-fw
+								= " 常规信息 "
+								span.pull-right.text-muted.small
+									em 昨天
+						a(href="#",class="btn btn-default btn-block") 查看全部通知
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						= " 饼状图表例子 "
+					.panel-body
+						div#morris-donut-chart
+						a(class="btn btn-default btn-block",href="#") 详情信息
+				.chat-panel.panel.panel-default
+					.panel-heading
+						i.fa.fa-comments.fa-fw
+						= " 聊天 "
+						.btn-group.pull-right
+							button.btn.btn-default.btn-xs.dropdown-toggle(type="button",data-toggle="dropdown")
+								i.fa.fa-chevron-down
+							ul.dropdown-menu.slidedown
+								li
+									a(href="#")
+										i.fa.fa-refresh.fa-fw
+										= " 刷新 "
+								li
+									a(href="#")
+										i.fa.fa-check-circle.fa-fw
+										= " 在线 "
+								li
+									a(href="#")
+										i.fa.fa-times.fa-fw
+										= " 忙碌 "
+								li
+									a(href="#")
+										i.fa.fa-clock-o.fa-fw
+										= " 离开 "
+								li.divider
+								li
+									a(href="#")
+										i.fa.fa-sign-out.fa-fw
+										= " 退出 "
+					.panel-body
+						ul.chat
+							li.left.clearfix
+								span.chat-img.pull-left
+									img.img-circle(src="/images/l1.png")
+								.chat-body.clearfix
+									.header
+										strong.primary-font 刘学文
+										small.pull-right.text-muted
+											i.fa.fa-clock-o.fa-fw
+											= " 12 分钟前 "
+									p 大唐贵州红阳风电场的数据已经给了，你们那边采集完了吗？ 
+							li.right.clearfix
+								span.chat-img.pull-right
+									img.img-circle(src="/images/l2.png")
+								.chat-body.clearfix
+									.header
+										strong.primary-font.pull-right dataHu
+										small.text-muted
+											i.fa.fa-clock-o.fa-fw
+											= " 13 分钟前 "
+									p  完了，你们风机里振动组和倾覆组格式不一样，需要统一吗？ 
+							li.left.clearfix
+								span.chat-img.pull-left
+									img.img-circle(src="/images/l1.png")
+								.chat-body.clearfix
+									.header
+										strong.primary-font 刘学文
+										small.pull-right.text-muted
+											i.fa.fa-clock-o.fa-fw
+											= " 12 分钟前 "
+									p  能统一最好，以后处理方便。
+							li.right.clearfix
+								span.chat-img.pull-right
+									img.img-circle(src="/images/l2.png")
+								.chat-body.clearfix
+									.header
+										strong.primary-font.pull-right dataHu
+										small.text-muted
+											i.fa.fa-clock-o.fa-fw
+											= " 13 mins ago "
+									p  ok，好。
+					.panel-footer
+						.input-group
+							input#btn-input(type="text",class="form-control input-sm",placeholder="输入信息...")
+							span.input-group-btn
+								button.btn.btn-warning.btn-sm(id="btn-chat") 发送

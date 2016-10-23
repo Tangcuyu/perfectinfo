@@ -34,8 +34,6 @@ var routes = {
 	auth: importRoutes('./auth')
 };
 
-//require("../lib/tsd")();
-
 // Setup Route Bindings
 exports = module.exports = function(app) {
 
@@ -52,7 +50,8 @@ exports = module.exports = function(app) {
     app.get('/candidate/cand/:candid', routes.views.cand);	//人才招聘单独页面
 	app.get('/sheet/:customer?', routes.views.sheet);//IT服务
 	app.get('/sheet/worksheet/:worksheet', routes.views.worksheet); //IT服务子目录
-	app.get('/game', routes.views.game);	//HTML5游戏
+	app.get('/game', routes.views.game);	//IOT
+	app.get('/game/:action',routes.views.game);
 	app.get('/flot', routes.views.flot);	//flot 图表
 	app.get('/morris', routes.views.morris);	//morris 图表
 	app.get('/gallery', routes.views.gallery);  //图片分享
@@ -69,6 +68,10 @@ exports = module.exports = function(app) {
 	app.all('/auth/confirm', routes.auth.confirm);
 	app.all('/auth/app', routes.auth.app);
 	app.all('/auth/:service', routes.auth.service);
+	
+	// User
+	app.all('/me*', middleware.requireUser);
+	app.all('/me', routes.views.me);
 
 	
 

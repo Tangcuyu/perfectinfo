@@ -75,8 +75,8 @@ exports.flashMessages = function(req, res, next) {
 exports.requireUser = function(req, res, next) {
 	
 	if (!req.user) {
-		req.flash('error', '登录后才能访问此页面。');
-		res.redirect('/signin');
+		//req.flash('error', '登录后才能访问此页面。');
+		res.redirect('keystone/signin');
 	} else {
 		next();
 	}

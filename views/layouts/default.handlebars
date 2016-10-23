@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	{{!-- HTML HEADER --}}
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport", content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{{page.title}}</title>
+		<link rel="shortcut icon", href="/itsi_64.ico", type="image/x-icon">
+
+		{{!-- Customise the stylesheet for your site by editing /public/styles/site.less --}}
+		{{!-- All .less files will be automatically compiled and minified in production. --}}
+		<link href="/styles/site.min.css", rel="stylesheet">
+		<link href="/styles/c3.css", rel="stylesheet", media="screen" >
+		{{_sections.csslink}}
+
+		{{!-- This file provides the default styling for the KeystoneJS Content Editor --}}
+			<link href="/keystone/styles/content/editor.min.css", rel="stylesheet">
+	</head>
+	{{!-- HTML BODY --}}
+	<body class= "sitesection-home">
+		<div class="site-wrapper has-sticky-footer" >
+			{{!-- SITE HEADER --}}
+			{{> header}}
+			{{!-- SITE BODY --}}
+			<div id="main" class="site-body" role="main">
+				{{{body}}}
+			</div>
+			{{!-- SITE FOOTER --}}
+			{{> footer}}
+		</div>
+		{{!-- JAVASCRIPT --}}
+		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		{{!-- Customise which Bootstrap javascript files are served by including --}}
+		{{!-- them specifically here, instead of bootstrap-3.2.0.min.js --}}
+		<script src='/js/lib/bootstrap/bootstrap-3.2.0.min.js'></script>
+
+
+		{{!-- The KeystoneJS Content Editor provides support for ks-editable data attributes, --}}
+		{{!-- which generate links to edit content for users who can access Keystone --}}
+			<script src='/keystone/js/content/editor.js'></script>
+
+		{{!-- Add scripts that are globally required by your site here. --}}
+		{{!-- Add D3.js for graphic data	--}}	
+		<script src='/js/lib/d3/d3.min.js'></script>
+		<script src='/js/lib/c3/c3.min.js'></script>
+		<script src='/js/ui.js'></script>
+		{{{_sections.js}}}
+	</body>
+</html>
