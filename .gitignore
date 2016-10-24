@@ -35,4 +35,4 @@ lib/tsd/lib/tcplog
 lib/tsd/lib/cache/*
 lib/socksd/lib/tcplog
 lib/socksd/lib/cache/*
-lib/socksd/lib/cache/LOG
+lib/socksd/lib/cache/
