@@ -16,7 +16,7 @@ block navCon
 								i.fa.fa-gears.fa-5x
 							.col-xs-9.text-right
 								.h3 常规扫描
-					a(href='/game?action='+'normal')
+					a(href='/runcmd')
 						.panel-footer
 							span.pull-left 详情信息
 							span.pull-right
@@ -30,7 +30,7 @@ block navCon
 								i.fa.fa-tasks.fa-5x
 							.col-xs-9.text-right
 								.h3 定时扫描
-					a(href=href='/game?action='+'timing')
+					a(href=href='/runcmd/'+'timing')
 						.panel-footer
 							span.pull-left 详情信息
 							span.pull-right
@@ -63,14 +63,14 @@ block navCon
 							span.pull-left 详情信息
 							span.pull-right
 								i(class="fa fa-arrow-circle-right")
-							.clearfix							
+							.clearfix
 		.row
 			.col-lg-8
 				if locals.filters.action = 'normal'
 					.panel.panel-default
 						.panel-heading
 							i.fa.fa-bar-chart-o.fa-fw
-							= locals.filters.action
+							= ' 实时扫描状态'
 							.pull-right
 								.btn-group
 									button(type="button",class="btn btn-default btn-xs dropdown-toggle",data-toggle="dropdown",aria-expanded="false")
@@ -94,56 +94,27 @@ block navCon
 				.panel.panel-default
 					.panel-heading
 						i.fa.fa-bell.fa-fw
-						= " 通知面板 "
+						= " 扫描参数设定 "
 					.panel-body
-						.list-group
-							a.list-group-item(href="#")
-								i.fa.fa-comment.fa-fw
-								= " 新增评论"
-								span.pull-right.text-muted.small
-									em 4分钟前
-							a.list-group-item(href="#")
-								i.fa.fa-warning.fa-fw
-								= " 风机警报提示 "
-								span.pull-right.text-muted.small
-									em 12分钟前
-							a.list-group-item(href="#")
-								i.fa.fa-envelope.fa-fw
-								= " 新消息提示 "
-								span.pull-right.text-muted.small
-									em 27分钟前
-							a.list-group-item(href="#")
-								i.fa.fa-tasks.fa-fw
-								= " 新增任务 "
-								span.pull-right.text-muted.small
-									em 43分钟前
-							a.list-group-item(href="#")
-								i.fa.fa-rotate-left.fa-fw
-								= " 风机检测系统重启 "
-								span.pull-right.text-muted.small
-									em 11:32AM
-							a.list-group-item(href="#")
-								i.fa.fa-bolt.fa-fw
-								= " 风机检测系统崩溃 "
-								span.pull-right.text-muted.small
-									em 11:13AM
-							a.list-group-item(href="#")
-								i.fa.fa-warning.fa-fw
-								= " 风机检测系统未响应 "
-								span.pull-right.text-muted.small
-									em 10:57AM
-							a.list-group-item(href="#")
-								i.fa.fa-gears.fa-fw
-								= " 内齿圈提示 "
-								span.pull-right.text-muted.small
-									em 9:49AM
-							a.list-group-item(href="#")
-								i.fa.fa-file-text-o.fa-fw
-								= " 常规信息 "
-								span.pull-right.text-muted.small
-									em 昨天
-						a(href="#",class="btn btn-default btn-block") 查看全部通知
+						form(method='post')
+							input(type='hidden', name='action', value='contact')
+							.form-group
+								label IP地址段
+								input(type='text', name='ipaddress', value='').form-control
+							.form-group
+								label 端口串
+								input(type='email', name='ports', value='').form-control
+							.form-group
+								label 发包速率
+								input(type='text', name='packages', value='').form-control
+							.form-group
+								label 源IP
+								input(type='text', name='sourceip', value='').form-control
+							.form-actions
+								button(type='submit').btn.btn-primary 开始扫描
 block jsThis
 	script(src="/js/data/js/morris-data.js")
+	script(src="../lib/runcmd/public/js/socket.io.js")
+	script(src="../lib/runcmd/public/js/index.js")
 
 				
