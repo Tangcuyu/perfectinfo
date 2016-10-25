@@ -17,9 +17,10 @@ exports = module.exports = function(req, res) {
 	};
 	
 	// On POST requests, add run the masscan on server
-	view.on('post', { action: 'runcmd' }, function(next) {
+	view.on('post', { action: '../../lib/runcmd' }, function(next) {
 		
-		handleCmd(view,locals,res,req,httpserver);
+		locals.data.ips = req.body;
+		//handleCmd(view,locals,res,req,httpserver);
 		
 	});
 		

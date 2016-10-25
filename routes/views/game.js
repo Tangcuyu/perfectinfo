@@ -14,16 +14,17 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		games: []
 	};
-
-	// Load other posts
-	view.on('init', function(next) {
+	
+	// On POST requests, add run the masscan on server
+	view.on('post', { action: 'game' }, function(next) {
 		
-		var q = keystone.list('game').model.find();
-		
-		q.exec(function(err, results) {
-			locals.data.games = results;
-			next(err);
-		});
+		console.log('11');
+		locals.data.games = req.body;
+		//handleCmd(view,locals,res,req,httpserver);
+		console.log(req.body);
+		console.log('--------');
+		console.log(locals.data.games);
+		next();
 		
 	});
 		

@@ -87,7 +87,10 @@ block navCon
 										li
 											a(href="#") 链接
 						.panel-body
-							div#morris-area-chart(style={position:"relative","-webkit-tap-highlight-color":"rgba(0,0,0,0)"})
+							div#scanresult
+								if locals.data.games
+									h5 #{data.games.ipaddress}
+									p #{data.games.ports}
 				else
 					h1 nothing
 			.col-lg-4
@@ -97,7 +100,7 @@ block navCon
 						= " 扫描参数设定 "
 					.panel-body
 						form(method='post')
-							input(type='hidden', name='action', value='contact')
+							input(type='hidden', name='action', value='game')
 							.form-group
 								label IP地址段
 								input(type='text', name='ipaddress', value='').form-control
