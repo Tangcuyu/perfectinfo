@@ -1,7 +1,0 @@
-PerfectInfo
-@TangcuyuTangcuyu owns this application.
-0 users
-Client ID
-a6f2329df9a065620e09
-Client Secret
-c8d774977d6fe4944874059af5b16bf1f26b78d3
