@@ -5,6 +5,7 @@ var keystone = require('keystone'),
 exports = module.exports = function(req, res) {
 	
 	var view = new keystone.View(req, res),
+		server = keystone.httpServer,
 		locals = res.locals;
 	
 	// Set locals
@@ -19,7 +20,8 @@ exports = module.exports = function(req, res) {
 	// On POST requests, add run the masscan on server
 	view.on('post', { action: 'game' }, function(next) {
 		locals.data.games = req.body;
-		handleCmd(keystone,locals);
+		console.log(server);
+		handleCmd(server, locals.data);
 		next();
 		
 	});

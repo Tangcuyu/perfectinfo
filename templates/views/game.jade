@@ -87,10 +87,7 @@ block navCon
 										li
 											a(href="#") 链接
 						.panel-body
-							div#scanresult
-								if locals.data.games
-									h5 #{data.games.ipaddress}
-									p #{data.games.ports}
+							ul#scanresult
 				else
 					h1 nothing
 			.col-lg-4
@@ -106,7 +103,7 @@ block navCon
 								input(type='text', name='ipaddress', value='').form-control
 							.form-group
 								label 端口串
-								input(type='email', name='ports', value='').form-control
+								input(type='text', name='ports', value='').form-control
 							.form-group
 								label 发包速率
 								input(type='text', name='packages', value='').form-control
@@ -116,5 +113,7 @@ block navCon
 							.form-actions
 								button(type='submit').btn.btn-primary 开始扫描
 block jsThis
+	script(src="/socksd/js/socket.io.js")
+	script(src="/runcmd/js/index.js")
 	
 				
