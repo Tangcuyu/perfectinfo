@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-	async = require('async');
+	async = require('async'),
+	handleCmd = require('../../lib/runcmd');
 
 exports = module.exports = function(req, res) {
 	
@@ -17,13 +18,8 @@ exports = module.exports = function(req, res) {
 	
 	// On POST requests, add run the masscan on server
 	view.on('post', { action: 'game' }, function(next) {
-		
-		console.log('11');
 		locals.data.games = req.body;
-		//handleCmd(view,locals,res,req,httpserver);
-		console.log(req.body);
-		console.log('--------');
-		console.log(locals.data.games);
+		handleCmd(keystone,locals);
 		next();
 		
 	});
