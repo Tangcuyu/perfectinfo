@@ -1,4 +1,6 @@
 extends ../layouts/navWu
+block cssThis
+	link(href="/styles/flot/index.css",rel="stylesheet")
 block navCon
 		style.
 			.timeline:before{
@@ -16,7 +18,7 @@ block navCon
 								i.fa.fa-gears.fa-5x
 							.col-xs-9.text-right
 								.h3 常规扫描
-					a(href='/runcmd')
+					a(href='/game')
 						.panel-footer
 							span.pull-left 详情信息
 							span.pull-right
@@ -86,8 +88,7 @@ block navCon
 										.divider
 										li
 											a(href="#") 链接
-						.panel-body
-							ul#scanresult
+						.panel-body#scanresult
 				else
 					h1 nothing
 			.col-lg-4
@@ -96,7 +97,7 @@ block navCon
 						i.fa.fa-bell.fa-fw
 						= " 扫描参数设定 "
 					.panel-body
-						form(method='post')
+						form(method='post', action='runcmd')
 							input(type='hidden', name='action', value='game')
 							.form-group
 								label IP地址段
@@ -114,6 +115,6 @@ block navCon
 								button(type='submit').btn.btn-primary 开始扫描
 block jsThis
 	script(src="/socksd/js/socket.io.js")
-	script(src="/runcmd/js/index.js")
+	script(src="/js/lib/runcmd/websocket.js")
 	
 				

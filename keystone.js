@@ -125,6 +125,7 @@ keystone.start(function(){
 		};
 		
 	require("./lib/socksd")(realtimeport,keystone.httpServer);
+	//require("./lib/runcmd")(keystone.httpServer, keystone.req, keystone.res);
 });
 
 

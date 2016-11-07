@@ -1,19 +1,7 @@
-extends ../layouts/default
-
-block content
-	.container: .row: .col-md-12
-		article
-			p: a(href='/blog') &larr; 学习足迹
-			hr
-			if !data.iplogs
-				h2 暂无扫描结果.
-			else
-				h5
-					if data.iplogs
-						each log in data.iplogs
-							log
-block js
-	script(src='https://cdn.socket.io/socket.io-1.4.5.js')	
+extends game
+block jsThis
+	script(src="/js/lib/runcmd/websocket.js")
+	script(src="/js/lib/runcmd/index.js")
 					
 						
 			

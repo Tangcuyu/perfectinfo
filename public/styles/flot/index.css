@@ -40,6 +40,10 @@ text-align:center
 #noise{
 overflow:auto;
 }
+#scanresult{
+  height: 360px;
+  overflow-y:auto
+}
 
 
 

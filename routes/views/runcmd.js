@@ -1,10 +1,9 @@
-var keystone = require('keystone'),
-	async = require('async');
-var handleCmd = require('../../lib/runcmd');
+var keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
 	
 	var view = new keystone.View(req, res),
+		server = keystone.httpServer,
 		locals = res.locals;
 	
 	// Set locals
@@ -13,18 +12,14 @@ exports = module.exports = function(req, res) {
 		action: req.params.action
 	};
 	locals.data = {
-		ips: []
+		ips: req.body.ipaddress
 	};
-	
-	// On POST requests, add run the masscan on server
-	view.on('post', { action: '../../lib/runcmd' }, function(next) {
-		
-		locals.data.ips = req.body;
-		//handleCmd(view,locals,res,req,httpserver);
-		
+	view.on('post',function(next){
+		//require("../../lib/runcmd")(server, keystone.req, keystone.res, locals.data);
+		next();
 	});
-		
+
 	// Render the view
-	view.render('game');
+	view.render('runcmd');
 	
 };
