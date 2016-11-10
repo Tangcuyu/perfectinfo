@@ -8,7 +8,7 @@ block navCon
 			}
 		.row
 			.col-lg-12
-				h1.page-header 控制台
+				h3.page-header 控制台
 		.row
 			.col-lg-3.col-md-6
 				.panel.panel-red
@@ -69,6 +69,10 @@ block navCon
 		.row
 			.col-lg-8
 				if locals.filters.action = 'normal'
+					i.fa.fa-tachometer.fa-fw
+					label 扫描进度
+					.progress
+						.progress-bar.progress-bar-success.six-sec-ease-in-out(role='progressbar', aria-valuemin='0', aria-valuemax='100', data-transitiongoal='100')
 					.panel.panel-default
 						.panel-heading
 							i.fa.fa-bar-chart-o.fa-fw
@@ -116,5 +120,6 @@ block navCon
 block jsThis
 	script(src="/socksd/js/socket.io.js")
 	script(src="/js/lib/runcmd/websocket.js")
+	script(src="/js/lib/runcmd/bootstrap-progressbar.js")
 	
 				

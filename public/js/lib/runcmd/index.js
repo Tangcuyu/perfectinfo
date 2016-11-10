@@ -15,9 +15,14 @@ websocket(function(socket) {
     try { message = JSON.parse(message); } catch($) {}
 
     if (!cache[message.key]) cache[message.key] = [];
-    cache.push(message.key);
-
-    //console.log(cache);
+    
+    var pattern1 = /.done/g;
+    var pattern2 = /.rate/g;
+    var matches = pattern1.test(message.key);
+    if (matches){
+    	cache.push(message.key);
+    };
+    
     render();
     
     
@@ -36,8 +41,7 @@ websocket(function(socket) {
             return d;
           })
          .attr("font-family", "sans-serif")
-         .attr("font-size", "14px")
-         .attr("fill", "red");
+         .attr("font-size", "14px");
   }
 
 });

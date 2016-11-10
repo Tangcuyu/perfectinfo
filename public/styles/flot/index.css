@@ -1,16 +1,7 @@
 
-
-
-
-
-
 #body {
   position: relative;
 }
-
-
-
-
 
 #body > p, li > p {
   line-height: 1.5em;
@@ -41,12 +32,16 @@ text-align:center
 overflow:auto;
 }
 #scanresult{
-  height: 360px;
+  height: 300px;
   overflow-y:auto
 }
-
-
-
+.six-sec-ease-in-out{
+  -webkit-transition: width 6s ease-in-out;
+  -moz-transition: width 6s ease-in-out;
+  -ms-transition: width 6s ease-in-out;
+  -o-transition: width 6s ease-in-out;
+  transition: width 6s ease-in-out;
+}
 
 
 #body > pre {
