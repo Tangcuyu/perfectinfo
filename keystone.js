@@ -18,6 +18,12 @@ var keystone = require('keystone'),
     }
 }); */
 
+var realtimeport = {
+			http: process.env.PORT,
+			tcp: process.env.TPORT
+		};
+		
+
 
 //Initialize keystone module
 keystone.init({
@@ -118,14 +124,13 @@ keystone.set('nav', {
 
 // Start Keystone to connect to your database and initialise the web server
 // Inject the socksd module to start();
-keystone.start(function(){
-	var realtimeport = {
-			http: process.env.PORT,
-			tcp: process.env.TPORT
-		};
-		
-	require("./lib/socksd")(realtimeport,keystone.httpServer);
-	//require("./lib/runcmd")(keystone.httpServer, keystone.req, keystone.res);
+keystone.start({
+	/* onHttpServerCreated: function(){
+						// Get realtime data with socksd module	
+						require("./lib/socksd")(realtimeport,keystone.httpServer);
+						//Open socket.io server for runcmd
+						require("./lib/sockcmd")(keystone.httpServer);
+					} */
 });
 
 

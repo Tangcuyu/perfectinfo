@@ -1,4 +1,6 @@
-var keystone = require('keystone');
+var keystone = require('keystone'),
+	runcmd = require('../../lib/sockcmd'),
+	io = require('socket.io');
 
 exports = module.exports = function(req, res) {
 	
@@ -12,14 +14,19 @@ exports = module.exports = function(req, res) {
 		action: req.params.action
 	};
 	locals.data = {
-		ips: req.body.ipaddress
+		ips: req.body.ipaddress,
+		ports: req.body.ports,
+		packages: req.body.packages,
+		sourceip: req.body.sourceip
 	};
-	view.on('post',function(next){
-		//require("../../lib/runcmd")(server, keystone.req, keystone.res, locals.data);
+	console.log(locals.data);
+	
+	view.on('post',{action: 'runcmd'},function(next){
+		//runcmd(io(server));
 		next();
 	});
-
 	// Render the view
 	view.render('runcmd');
+	runcmd(io(server));
 	
 };

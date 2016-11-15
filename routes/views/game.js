@@ -1,4 +1,5 @@
-var keystone = require('keystone');
+var keystone = require('keystone'),
+	io = require('../../lib/socketio/sockets.js');
 
 exports = module.exports = function(req, res) {
 	
@@ -14,8 +15,9 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		games: []
 	};
-	require("../../lib/runcmd")(server, keystone.req, keystone.res);
+	
 	// Render the view
+	io.init(server);
 	view.render('game');
 	
 };

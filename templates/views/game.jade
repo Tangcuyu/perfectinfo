@@ -101,8 +101,7 @@ block navCon
 						i.fa.fa-bell.fa-fw
 						= " 扫描参数设定 "
 					.panel-body
-						form(method='post', action='runcmd')
-							input(type='hidden', name='action', value='game')
+						form(id='runcmdForm', onsubmit='return false;')
 							.form-group
 								label IP地址段
 								input(type='text', name='ipaddress', value='').form-control
@@ -116,10 +115,13 @@ block navCon
 								label 源IP
 								input(type='text', name='sourceip', value='').form-control
 							.form-actions
-								button(type='submit').btn.btn-primary 开始扫描
+								button(type='submit', id ='btnRuncmd').btn.btn-primary 开始扫描
+			block cmdresult
 block jsThis
-	script(src="/socksd/js/socket.io.js")
-	script(src="/js/lib/runcmd/websocket.js")
+	script(src="http://malsup.github.com/jquery.form.js")
+	script(src="/js/lib/socketio/socket.io.js")
+	script(src="/js/lib/socketio/client.js")
 	script(src="/js/lib/runcmd/bootstrap-progressbar.js")
+	
 	
 				
