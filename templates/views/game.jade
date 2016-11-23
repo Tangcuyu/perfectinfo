@@ -67,7 +67,28 @@ block navCon
 								i(class="fa fa-arrow-circle-right")
 							.clearfix
 		.row
-			.col-lg-8
+			.col-lg-3
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bell.fa-fw
+						= " 扫描参数设定 "
+					.panel-body
+						form(id='runcmdForm', onsubmit='return false;')
+							.form-group
+								label IP地址段
+								input(type='text', name='ipaddress', value='').form-control
+							.form-group
+								label 端口串
+								input(type='text', name='ports', value='').form-control
+							.form-group
+								label 发包速率
+								input(type='text', name='packages', value='').form-control
+							.form-group
+								label 源IP
+								input(type='text', name='sourceip', value='').form-control
+							.form-actions
+								button(type='submit', id ='btnRuncmd').btn.btn-primary 开始扫描
+			.col-lg-9
 				if locals.filters.action = 'normal'
 					i.fa.fa-tachometer.fa-fw
 					label 扫描进度
@@ -95,28 +116,6 @@ block navCon
 						.panel-body#scanresult
 				else
 					h1 nothing
-			.col-lg-4
-				.panel.panel-default
-					.panel-heading
-						i.fa.fa-bell.fa-fw
-						= " 扫描参数设定 "
-					.panel-body
-						form(id='runcmdForm', onsubmit='return false;')
-							.form-group
-								label IP地址段
-								input(type='text', name='ipaddress', value='').form-control
-							.form-group
-								label 端口串
-								input(type='text', name='ports', value='').form-control
-							.form-group
-								label 发包速率
-								input(type='text', name='packages', value='').form-control
-							.form-group
-								label 源IP
-								input(type='text', name='sourceip', value='').form-control
-							.form-actions
-								button(type='submit', id ='btnRuncmd').btn.btn-primary 开始扫描
-			block cmdresult
 block jsThis
 	script(src="http://malsup.github.com/jquery.form.js")
 	script(src="/js/lib/socketio/socket.io.js")

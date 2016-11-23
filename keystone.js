@@ -4,7 +4,8 @@ require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone'),
-	pkg = require('./package.json');
+	pkg = require('./package.json'),
+	io = require('./lib/socketio');
 
 // set up handlebars view engine
 /* var handlebars = require('express3-handlebars').create({
@@ -125,12 +126,10 @@ keystone.set('nav', {
 // Start Keystone to connect to your database and initialise the web server
 // Inject the socksd module to start();
 keystone.start({
-	/* onHttpServerCreated: function(){
-						// Get realtime data with socksd module	
-						require("./lib/socksd")(realtimeport,keystone.httpServer);
-						//Open socket.io server for runcmd
-						require("./lib/sockcmd")(keystone.httpServer);
-					} */
+	onHttpServerCreated: function(){
+						keystone.io = io(keystone.httpServer);
+						console.log('SocketIO server init with three namespace: /, /scan_ip, /wind_power');
+					} 
 });
 
 
