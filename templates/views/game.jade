@@ -116,11 +116,35 @@ block navCon
 						.panel-body#scanresult
 				else
 					h1 nothing
+		.row
+			.col-lg-12
+				if locals.filters.action = 'normal'
+					.panel.panel-default
+						.panel-heading
+							i.fa.fa-reorder.fa-fw
+							= ' 扫描结果列表'
+							.pull-right
+								.btn-group
+									button(type="button",class="btn btn-default btn-xs dropdown-toggle",data-toggle="dropdown",aria-expanded="false")
+										=" 选项 "
+										span.caret
+									ul.dropdown-menu.pull-right
+										li
+											a(href="#") 选项1
+										li
+											a(href="#") 选项2
+										li
+											a(href="#") 其他选项
+										.divider
+										li
+											a(href="#") 链接
+						.panel-body#resultList
+				else
+					h1 no result
 block jsThis
-	script(src="http://malsup.github.com/jquery.form.js")
 	script(src="/js/lib/socketio/socket.io.js")
 	script(src="/js/lib/socketio/client.js")
-	script(src="/js/lib/runcmd/bootstrap-progressbar.js")
+	script(src="/js/lib/socketio/bootstrap-progressbar.js")
 	
 	
 				

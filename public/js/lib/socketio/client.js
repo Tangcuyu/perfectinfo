@@ -1,11 +1,22 @@
 var scanIP = io.connect('/scan_ip'),
 	windpower = io.connect('/wind_power');
-var cache = [];
+var cache = [],
+	result = [];
 
 	
 function render() {
 		d3.select("#scanresult").selectAll("pre")
          .data(cache)
+         .enter()
+         .append("pre")
+         .text(function(d){
+            return d;
+          });
+  }	
+  
+function renderResult() {
+		d3.select("#resultList").selectAll("pre")
+         .data(result)
          .enter()
          .append("pre")
          .text(function(d){
@@ -29,6 +40,17 @@ scanIP.on('run',function(message){
     render();
 });
 
+scanIP.on('cmd_finished',function(message){
+	
+    try { message = JSON.parse(message); } catch($) {}
+
+    if (!result[message.key]) result[message.key] = [];
+
+	result.push(message.key);
+	console.log(result);
+    renderResult();
+});
+
 //把表单数据转换成JSON对象
 $.fn.serializeObject = function(){
 	var o = {};
@@ -49,11 +71,12 @@ $.fn.serializeObject = function(){
 $(function(){
 	$('#btnRuncmd').click(function(event){
 		var formobj = $('#runcmdForm').serializeObject();
-		
 		var response = JSON.stringify(formobj);
-		if (confirm('请确认提交的扫描参数是否正确：#{response}')){
-			$('#scanresult').val('');
-			scanIP.emit('cmd_submit',response);
+		if (confirm('确认开始扫描')){
+			$('.progress .progress-bar').progressbar({
+				display_text: 'fill'
+			});
+			scanIP.emit('cmd_submit',response);	
 		};
 		return false;
 	});
