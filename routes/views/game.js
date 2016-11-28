@@ -19,9 +19,8 @@ exports = module.exports = function(req, res) {
 		.on('connection',function(socket){
 			console.log('A client connected to scan_ip namespace.');
 			socket.on('cmd_submit',function(data){
-				try { message = JSON.parse(data); } catch($) {}
 				var cmdparms = JSON.parse(data);
-				console.log(cmdparms);
+				//console.log(cmdparms);
 				socketCmd.start(socket, cmdparms);
 					//socket.send(JSON.stringify(data));
 				
