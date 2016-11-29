@@ -38,3 +38,4 @@ lib/socksd/lib/tcplog
 lib/socksd/lib/cache/*
 lib/socksd/lib/cache/
 lib/socketio/sockip/lib/cache/
+lib/socketio/sockip/lib/cache/*

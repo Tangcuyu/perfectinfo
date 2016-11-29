@@ -23,6 +23,12 @@ function renderResult() {
             return d;
           });
   }	
+  
+function resetProgressbar(){
+			$('.progress .progress-bar').attr('data-transitiongoal', 0).progressbar({
+				display_text: 'center'
+			});
+}
 
 scanIP.on('run',function(message){
 	
@@ -37,6 +43,14 @@ scanIP.on('run',function(message){
     if (mtitle || matches){
     	cache.push(message.key);
     };
+	$('.progress .progress-bar').attr('data-transitiongoal', 100).progressbar({
+				display_text: 'center',
+				done: function(pb){
+					//if (confirm('扫描完成重置进度条吗？')) {pb.attr('data-transitiongoal', 0).progressbar();}
+					return;
+				}
+	});
+	
     render();
 });
 
@@ -44,11 +58,12 @@ scanIP.on('cmd_finished',function(message){
 	
     try { message = JSON.parse(message); } catch($) {}
 
-    if (!result[message.key]) result[message.key] = [];
+    //if (!result[message.key]) result[message.key] = [];
 
-	result.push(message.key);
-	console.log(result);
+	result.push(message.value);
+	console.log(message);
     renderResult();
+	return;
 });
 
 //把表单数据转换成JSON对象
@@ -73,11 +88,15 @@ $(function(){
 		var formobj = $('#runcmdForm').serializeObject();
 		var response = JSON.stringify(formobj);
 		if (confirm('确认开始扫描')){
-			$('.progress .progress-bar').progressbar({
-				display_text: 'fill'
-			});
 			scanIP.emit('cmd_submit',response);	
 		};
+		return false;
+	});
+	
+	$('#btnResetcmd').click(function(event){
+		$('.progress .progress-bar').attr('data-transitiongoal', 0).progressbar({
+			display_text: 'center'
+		});
 		return false;
 	});
 });

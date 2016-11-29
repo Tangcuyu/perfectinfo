@@ -35,6 +35,10 @@ overflow:auto;
   height: 295px;
   overflow-y:auto
 }
+#resultList{
+  height: 350px;
+  overflow-y:auto
+}
 .six-sec-ease-in-out{
   -webkit-transition: width 6s ease-in-out;
   -moz-transition: width 6s ease-in-out;
