@@ -20,10 +20,11 @@ exports = module.exports = function(req, res) {
 			console.log('A client connected to scan_ip namespace.');
 			socket.on('cmd_submit',function(data){
 				var cmdparms = JSON.parse(data);
-				//console.log(cmdparms);
 				socketCmd.start(socket, cmdparms);
-					//socket.send(JSON.stringify(data));
-				
+			});
+			socket.on('cmd_kill', function(data){
+				var cmdparms = JSON.parse(data);
+				socketCmd.kill(socket, cmdparms);
 			});
 		});
 	var windPowerSocket = io.of('/wind_power')

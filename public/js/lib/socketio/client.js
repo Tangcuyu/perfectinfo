@@ -84,19 +84,39 @@ $.fn.serializeObject = function(){
 };
 //向后台的Socket server 提交扫描命令运行所需参数
 $(function(){
+	
+	
 	$('#btnRuncmd').click(function(event){
-		var formobj = $('#runcmdForm').serializeObject();
-		var response = JSON.stringify(formobj);
-		if (confirm('确认开始扫描')){
-			scanIP.emit('cmd_submit',response);	
+		//验证表单输入
+		var validator = $('#runcmdForm').validate({
+			rules: {
+				ipaddress:{
+					required: true	
+				},
+				ports:{
+					required:true,
+					digits:true
+				}
+			}
+		});
+		//表单的IP和端口是必填项，输入正确后才可以提交命令到后台运行
+		if(validator.form()){
+			var formobj = $('#runcmdForm').serializeObject();
+			var response = JSON.stringify(formobj);
+			if (confirm('确认开始扫描')){
+				scanIP.emit('cmd_submit',response);	
+			};
 		};
+		
 		return false;
 	});
 	
 	$('#btnResetcmd').click(function(event){
-		$('.progress .progress-bar').attr('data-transitiongoal', 0).progressbar({
-			display_text: 'center'
-		});
+		var formobj = $('#runcmdForm').serializeObject();
+		var response = JSON.stringify(formobj);
+		if (confirm('确认要中断当前的扫描吗？')){
+			scanIP.emit('cmd_kill',response);	
+		};
 		return false;
 	});
 });

@@ -73,7 +73,7 @@ block navCon
 						i.fa.fa-bell.fa-fw
 						= " 扫描参数设定 "
 					.panel-body
-						form(id='runcmdForm', onsubmit='return false;')
+						form(id='runcmdForm')
 							.form-group
 								label IP地址段
 								input(type='text', name='ipaddress', value='').form-control
@@ -88,7 +88,7 @@ block navCon
 								input(type='text', name='sourceip', value='').form-control
 							.form-actions
 								button(type='submit', id ='btnRuncmd').btn.btn-primary 开始扫描
-								button(type='submit', id ='btnResetcmd').btn.btn-default 重置参数
+								button(type='submit', id ='btnResetcmd').btn.btn-danger 中断扫描
 			.col-lg-9
 				if locals.filters.action = 'normal'
 					i.fa.fa-tachometer.fa-fw
@@ -143,6 +143,10 @@ block navCon
 				else
 					h1 no result
 block jsThis
+	script(src='/js/lib/jquery/jquery.validate.min.js')
+	script(src='/js/lib/jquery/additional-methods.min.js')
+	script(src='/js/lib/jquery/messages_cn.js')
+	script(src='/js/lib/jquery/jquery.metadata.js')
 	script(src="/js/lib/socketio/socket.io.js")
 	script(src="/js/lib/socketio/client.js")
 	script(src="/js/lib/socketio/bootstrap-progressbar.js")
