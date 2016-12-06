@@ -78,13 +78,13 @@ block navCon
 								label IP地址段
 								input(type='text', name='ipaddress', value='').form-control
 							.form-group
-								label 端口串
+								label 端口范围
 								input(type='text', name='ports', value='').form-control
 							.form-group
 								label 发包速率
 								input(type='text', name='packages', value='').form-control
 							.form-group
-								label 源IP
+								label 源IP（本地网中任意一个空闲IP）
 								input(type='text', name='sourceip', value='').form-control
 							.form-actions
 								button(type='submit', id ='btnRuncmd').btn.btn-primary 开始扫描

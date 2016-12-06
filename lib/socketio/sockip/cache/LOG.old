@@ -1,0 +1,6 @@
+2016/12/06-11:47:59.512225 b2efcb40 Recovering log #153
+2016/12/06-11:47:59.512383 b2efcb40 Level-0 table #155: started
+2016/12/06-11:47:59.521002 b2efcb40 Level-0 table #155: 2822 bytes OK
+2016/12/06-11:47:59.556651 b2efcb40 Delete type=0 #153
+2016/12/06-11:47:59.556722 b2efcb40 Delete type=3 #151
+2016/12/06-11:47:59.564834 b24ffb40 Moved #142 to level-1 197 bytes OK: files[ 3 10 0 0 0 0 0 ]

@@ -85,17 +85,32 @@ $.fn.serializeObject = function(){
 //向后台的Socket server 提交扫描命令运行所需参数
 $(function(){
 	
+	$.validator.addMethod('ipaddress', function(value, element){
+		var ip = /^(1|([1-9]{1,2}|[1-9]0)|(1[0-9]{2}|2[0-5]{2}))((.(0|([1-9]{1,2}|[1-9]0)|(1[0-9]{2}|2[0-5]{2}))){2}).(1|([1-9]{1,2}|[1-9]0)|(1[0-9]{2}|2[0-5]{2}))$/;
+		return this.optional(element) || (ip.test(value));
+	}, '请输入正确的IP地址');
+	$.validator.addMethod('ports', function(value, element){
+		var port = /^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/;   
+		var r = /[-]+/;
+		return this.optional(element) || ( port.test(value) || r.test(value));
+	}, '请输入正确的端口或端口范围，比如：0-1000');
 	
 	$('#btnRuncmd').click(function(event){
-		//验证表单输入
+		
+		//验证表单输入对象
 		var validator = $('#runcmdForm').validate({
 			rules: {
 				ipaddress:{
-					required: true	
+					required: true
+					//ipaddress: true
 				},
 				ports:{
 					required:true,
-					digits:true
+					ports:true
+				},
+				sourceip:{
+					required: true,
+					ipaddress: true
 				}
 			}
 		});

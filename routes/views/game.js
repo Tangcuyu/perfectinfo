@@ -24,7 +24,7 @@ exports = module.exports = function(req, res) {
 			});
 			socket.on('cmd_kill', function(data){
 				var cmdparms = JSON.parse(data);
-				socketCmd.kill(socket, cmdparms);
+				socketCmd.kill();
 			});
 		});
 	var windPowerSocket = io.of('/wind_power')
