@@ -5,7 +5,8 @@ require('dotenv').load();
 // Require keystone
 var keystone = require('keystone'),
 	pkg = require('./package.json'),
-	io = require('./lib/socketio');
+	io = require('socket.io'),
+	socketio = require('./lib/socketio');
 
 // set up handlebars view engine
 /* var handlebars = require('express3-handlebars').create({
@@ -128,9 +129,12 @@ keystone.set('nav', {
 keystone.start({
 	onHttpServerCreated: function(){
 						keystone.io = io(keystone.httpServer);
-						console.log('SocketIO server init with three namespace: /, /scan_ip, /wind_power');
+						console.log('SocketIO server started.');
+						socketio(keystone);
 					} 
 });
+
+
 
 
 

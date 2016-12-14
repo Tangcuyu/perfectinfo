@@ -12,7 +12,6 @@ var _ = require('underscore'),
 	querystring = require('querystring'),
 	keystone = require('keystone');
 
-
 /**
 	Initialises the standard view locals
 	
@@ -75,7 +74,7 @@ exports.flashMessages = function(req, res, next) {
 exports.requireUser = function(req, res, next) {
 	
 	if (!req.user) {
-		//req.flash('error', '登录后才能访问此页面。');
+		req.flash('error', '登录后才能访问此页面。');
 		res.redirect('keystone/signin');
 	} else {
 		next();

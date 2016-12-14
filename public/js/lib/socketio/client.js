@@ -8,7 +8,7 @@ function render() {
 		d3.select("#scanresult").selectAll("pre")
          .data(cache)
          .enter()
-         .append("pre")
+         .insert("pre","pre")
          .text(function(d){
             return d;
           });
@@ -18,7 +18,7 @@ function renderResult() {
 		d3.select("#resultList").selectAll("pre")
          .data(result)
          .enter()
-         .append("pre")
+         .insert("pre","pre")
          .text(function(d){
             return d;
           });
@@ -29,6 +29,9 @@ function resetProgressbar(){
 				display_text: 'center'
 			});
 }
+scanIP.on('adminopen',function(client){
+	console.log(client + '连接到scanIP服务....');
+});
 
 scanIP.on('run',function(message){
 	
@@ -63,6 +66,13 @@ scanIP.on('cmd_finished',function(message){
 	result.push(message.value);
 	console.log(message);
     renderResult();
+	return;
+});
+
+scanIP.on('cmd_killed',function(message){
+	cache.push(message);
+	console.log(message);
+    render();
 	return;
 });
 

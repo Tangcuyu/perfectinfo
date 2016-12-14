@@ -50,7 +50,7 @@ exports = module.exports = function(app) {
     app.get('/candidate/cand/:candid', routes.views.cand);	//人才招聘单独页面
 	app.get('/sheet/:customer?', routes.views.sheet);//IT服务
 	app.get('/sheet/worksheet/:worksheet', routes.views.worksheet); //IT服务子目录
-	app.get('/game', routes.views.game);	//IOT
+	app.get('/game', middleware.requireUser, routes.views.game);	//IOT
 	//app.post('/runcmd',routes.views.runcmd); //IP扫描
 	app.get('/flot', routes.views.flot);	//flot 图表
 	app.get('/morris', routes.views.morris);	//morris 图表
