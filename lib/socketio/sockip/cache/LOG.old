@@ -1,6 +1,0 @@
-2016/12/22-18:15:41.380168 b29fcb40 Recovering log #90
-2016/12/22-18:15:41.380416 b29fcb40 Level-0 table #92: started
-2016/12/22-18:15:41.388822 b29fcb40 Level-0 table #92: 2746 bytes OK
-2016/12/22-18:15:41.424661 b29fcb40 Delete type=0 #90
-2016/12/22-18:15:41.424731 b29fcb40 Delete type=3 #89
-2016/12/22-18:15:41.432827 b21fbb40 Moved #81 to level-1 2746 bytes OK: files[ 3 17 0 0 0 0 0 ]
