@@ -1,0 +1,34 @@
+extends ../../layouts/default
+
+block flash-messages
+	//- intentionally blank
+
+block content
+	.container-xs
+		.page-intro
+			h3 物联网 
+			+flash-messages(messages)
+block js
+	script.
+		$(document).ready(function() {
+			var $authmodal = $('#modal-auth');
+			var authmodalPanes = $authmodal.find('.auth-box');
+			var initial = $(this).data("initial") || 'signin';
+			var initialPane = $authmodal.find('.modal-pane-' + initial);
+			var from = $(this).data("from");
+			
+			$authmodal.modal('show');
+			
+			authmodalPanes.addClass('hidden');
+			initialPane.removeClass('hidden');
+			
+			// only focus the first field on large devices where showing
+			// the keyboard isn't a jarring experience
+			if ($(window).width() >= 768) {
+				initialPane.find('input[type!=hidden],textarea').eq(0).click().focus();
+			}
+			
+			if (from) {
+				$authmodal.find('[name="from"]').val(from);
+			}
+		});

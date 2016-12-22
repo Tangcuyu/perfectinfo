@@ -75,7 +75,7 @@ exports.requireUser = function(req, res, next) {
 	
 	if (!req.user) {
 		req.flash('error', '登录后才能访问此页面。');
-		res.redirect('keystone/signin');
+		res.redirect('/signinpop');
 	} else {
 		next();
 	}

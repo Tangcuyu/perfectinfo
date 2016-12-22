@@ -76,6 +76,13 @@ scanIP.on('cmd_killed',function(message){
 	return;
 });
 
+scanIP.on('cmd_kill_finish',function(message){
+	cache.push(message);
+	console.log(message);
+    render();
+	return;
+});
+
 //把表单数据转换成JSON对象
 $.fn.serializeObject = function(){
 	var o = {};

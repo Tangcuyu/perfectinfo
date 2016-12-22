@@ -13,7 +13,7 @@ exports = module.exports = function(req, res) {
 	locals.section = 'session';
 	locals.form = req.body;
 	
-	view.on('post', { action: 'signin' }, function(next) {
+	view.on('post', { action: 'signinpop' }, function(next) {
 		
 		if (!req.body.email || !req.body.password) {
 			req.flash('error', 'Please enter your username and password.');
@@ -38,6 +38,6 @@ exports = module.exports = function(req, res) {
 		
 	});
 	
-	view.render('session/signin');
+	view.render('session/signinpop');
 	
 }
