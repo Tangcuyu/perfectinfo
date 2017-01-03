@@ -63,7 +63,7 @@ scanIP.on('cmd_finished',function(message){
 
     //if (!result[message.key]) result[message.key] = [];
 
-	result.push(message.value);
+	result.push(message.key, message.value);
 	console.log(message);
     renderResult();
 	return;
@@ -75,6 +75,12 @@ scanIP.on('cmd_killed',function(message){
     render();
 	return;
 });
+
+scanIP.on('scan_finished',function(message){
+	alert(message);
+	return;
+});
+
 
 scanIP.on('cmd_kill_finish',function(message){
 	cache.push(message);

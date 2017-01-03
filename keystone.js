@@ -116,6 +116,7 @@ keystone.set('email tests', require('./routes/emails'));
 keystone.set('nav', {
 	'用户管理': 'users',
 	'客户管理':'customers',
+	'IP地址扫描':'IPaddress',
 	'工单': 'worksheets',
 	'课程': ['posts', 'post-categories'],
 	'人才招聘':['Candidate','TitleCategory','SkillCategory'],
