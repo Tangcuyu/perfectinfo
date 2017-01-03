@@ -18,7 +18,7 @@ function renderResult() {
 		d3.select("#resultList").selectAll("pre")
          .data(result)
          .enter()
-         .insert("pre","pre")
+		 .append("pre")
          .text(function(d){
             return d;
           });
@@ -29,6 +29,16 @@ function resetProgressbar(){
 				display_text: 'center'
 			});
 }
+
+/*
+开始处理后台服务器发送来的socket事件:
+	1. adminopen事件：后台显示socket服务连接
+	2. run事件：实时显示命令运行时，控制台上的显示日志
+	3. scan_finished事件：扫描命令运行结束后，提示用户
+	4. cmd_finished事件：获取后台扫描结果，并显示在resultList区域中
+	5. cmd_killed事件：终止命令后提示
+	6. cmd_kill_finish事件：终止命令后，再点击终止按钮时，提示用户进程已经停止
+*/
 scanIP.on('adminopen',function(client){
 	console.log(client + '连接到scanIP服务....');
 });
@@ -57,14 +67,19 @@ scanIP.on('run',function(message){
     render();
 });
 
+scanIP.on('scan_finished',function(message){
+	alert(message);
+	return;
+});
+
 scanIP.on('cmd_finished',function(message){
 	
     try { message = JSON.parse(message); } catch($) {}
 
     //if (!result[message.key]) result[message.key] = [];
-
+	//message.key = '扫描时间：' + message.key;
 	result.push(message.key, message.value);
-	console.log(message);
+	console.log(result);
     renderResult();
 	return;
 });
@@ -76,10 +91,7 @@ scanIP.on('cmd_killed',function(message){
 	return;
 });
 
-scanIP.on('scan_finished',function(message){
-	alert(message);
-	return;
-});
+
 
 
 scanIP.on('cmd_kill_finish',function(message){
