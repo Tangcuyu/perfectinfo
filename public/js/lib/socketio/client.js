@@ -75,10 +75,10 @@ scanIP.on('scan_finished',function(message){
 scanIP.on('cmd_finished',function(message){
 	
     try { message = JSON.parse(message); } catch($) {}
-
-    //if (!result[message.key]) result[message.key] = [];
-	//message.key = '扫描时间：' + message.key;
-	result.push(message.key, message.value);
+	console.log(message);
+	//处理从服务器端获取的json数据
+	var key = '扫描时间：' + message.key;
+	result.push(key, message.value);
 	console.log(result);
     renderResult();
 	return;
