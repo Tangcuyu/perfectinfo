@@ -13,7 +13,9 @@ function render() {
             return d;
           });
   }	
-  
+/*
+	生成扫描结果页面的函数
+*/  
 function renderResult() {
 		d3.select("#resultList").selectAll("pre")
          .data(result)
@@ -23,12 +25,22 @@ function renderResult() {
             return d;
           });
   }	
-  
+
+ /*
+	重置进度条函数（暂时还没用到，需要调整）
+*/ 
 function resetProgressbar(){
 			$('.progress .progress-bar').attr('data-transitiongoal', 0).progressbar({
 				display_text: 'center'
 			});
 }
+
+/*
+	判断字符串包含关系的函数，用于去除扫描结果字符串中最后的{finished:1}
+*/ 
+function isContains(str, substr){
+	return str.indexOf(substr) >= 0;
+};
 
 /*
 开始处理后台服务器发送来的socket事件:
@@ -75,9 +87,15 @@ scanIP.on('scan_finished',function(message){
 scanIP.on('cmd_finished',function(message){
 	
     try { message = JSON.parse(message); } catch($) {}
-	console.log(message);
+	//console.log(message);
 	//处理从服务器端获取的json数据
 	var key = '扫描时间：' + message.key;
+	var value = message.value;
+	/* 
+	if (isContains(value,'IP')) {
+		
+	}//value = JSON.parse(value); */
+	console.log(typeof(value));
 	result.push(key, message.value);
 	console.log(result);
     renderResult();

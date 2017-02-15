@@ -25,5 +25,8 @@
   "scripts": {
     "start": "node keystone.js"
   },
-  "main": "keystone.js"
+  "main": "keystone.js",
+  "devDependencies": {
+    "webpack": "^1.14.0"
+  }
 }
