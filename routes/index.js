@@ -42,7 +42,7 @@ exports = module.exports = function(app) {
 	app.get('/bloglist', routes.views.bloglist);  //技能培训
 	app.get('/bloglist/:category?', routes.views.bloglist);  //技能培训子目录
 	app.get('/bloglist/post/:post', routes.views.post);	//技能培训单独页面
-	app.get('/blog', routes.views.blogback); 	//时间轴
+	app.get('/blog',middleware.requireUser, routes.views.blogback); 	//时间轴
 	app.get('/blog/:category?', routes.views.blog);  //时间轴子目录
 	app.get('/blog/post/:post', routes.views.post);  //时间轴单独页面
     app.get('/candidate', routes.views.candidate); //人才招聘
